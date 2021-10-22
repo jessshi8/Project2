@@ -15,4 +15,4 @@
   * Can post a review on books purchased
       - Validation required
 - Pages:
-  * Sign-in, registration, book catalog, shopping cart, checkout, each book has its own page
+  * Login, Register, Book Catalog, Shopping Cart, Checkout, User Profile
