@@ -16,3 +16,6 @@
       - Validation required
 - Pages:
   * Login, Register, Book Catalog, Shopping Cart, Checkout, User Profile
+  * Logout, Retrieve books by number of stars/reviews
+  * Submit a review/ validations before posting a review
+  * 
