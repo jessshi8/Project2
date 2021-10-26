@@ -1,0 +1,8 @@
+create user project2user with password 'p4ssw0rd';
+create database project2db;
+--SCL greant to give myUser access and privileges to the myFirstDB database
+grant all privileges on database project2db to project2user;
+
+joeydb.cpthsxeojuz1.us-east-2.rds.amazonaws.com
+
+
