@@ -13,6 +13,13 @@ public class MainDriver {
 		User u = new User("user123", "password", "Test", "User", "testuser@email.com", 1);
 		uDao.insert(u);
 		
+		User user = uDao.getUserByUsername("user123");
+		System.out.println(user);
+		user.setPassword("newpassword");
+		uDao.update(user);
+		
+		hUtil.closeFactory();
+		
 //		System.out.println(uDao.getUserByUsername("user123"));
 		
 	}

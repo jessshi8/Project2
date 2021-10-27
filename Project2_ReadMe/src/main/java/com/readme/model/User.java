@@ -5,10 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ColumnDefault;
-
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 	@Id
 	@Column(name="username")
@@ -22,7 +20,6 @@ public class User {
 	@Column(name="email", unique=true, nullable=false)
 	private String email;
 	@Column(name="role")
-	@ColumnDefault("1") // We use 1 to identify users with customer role
 	private int role;
 	
 	public User() {

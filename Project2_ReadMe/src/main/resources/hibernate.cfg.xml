@@ -15,5 +15,8 @@
 		<property name="hibernate.format_sql">false</property>
 		<property name="hibernate.connection.pool_size">10</property>
 		<property name="hibernate.hbm2ddl.auto">create</property>
+		
+		<!-- Mapping Entity Classes -->
+		<mapping class="com.readme.model.User"></mapping>
 	</session-factory>
 </hibernate-configuration>

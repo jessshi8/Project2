@@ -58,4 +58,10 @@ public class UserDao {
 		}
 		return null;
 	}
+	
+	public List<User> getAll() {
+		Session session = hUtil.getSession();
+		List<User> uList = session.createQuery("from User", User.class).list();
+		return uList;
+	}
 }
