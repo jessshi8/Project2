@@ -55,24 +55,34 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.2.0.Final</version>
 		</dependency>
-		<!-- Spring Core Dependency (provides the IoC Container) -->
+		<!-- Spring Core Dependency -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>5.3.9</version>
 		</dependency>
-		<!-- Spring Beans Dependency (provides the ability to 'wire' beans AKA 
-			inject our beans) -->
+		<!-- Spring Beans Dependency -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
 			<version>5.3.9</version>
 		</dependency>
-		<!-- Spring Context Dependency (provides annotations and package scanning 
-			to configure our IoC Container) -->
+		<!-- Spring Context Dependency -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
+			<version>5.3.9</version>
+		</dependency>
+		<!-- Spring ORM Dependency -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>5.3.9</version>
+		</dependency>
+		<!-- Spring Web-MVC Dependency -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 			<version>5.3.9</version>
 		</dependency>
 	</dependencies>
