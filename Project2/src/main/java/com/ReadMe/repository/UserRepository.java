@@ -7,9 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ReadMe.model.Users;
 
-@Repository("userRepo")// this is a stereotype annotation it doesn't come from spring ORM
-
 @Transactional
+@Repository("userRepo")// this is a stereotype annotation it doesn't come from spring ORM
 public class UserRepository {
 	
 	private SessionFactory sesFact;
@@ -20,21 +19,20 @@ public class UserRepository {
     @Autowired
 	public UserRepository(SessionFactory sesFact) {
 		super();
+		System.out.println(sesFact);
 		this.sesFact = sesFact;
 	}
      
 	public void insert(Users user) {
-		
 		sesFact.getCurrentSession().save(user);
-			
 	}
 	
     public List<Users> selectAll(){
-    	return sesFact.getCurrentSession().createQuery("from User", Users.class).list();
+    	return sesFact.getCurrentSession().createQuery("from Users", Users.class).list();
     }
     
     public Users selectByUsername(String username) {	
-        List<Users> uList = sesFact.getCurrentSession().createQuery("from User where username='"+ username + "'", Users.class).list();
+        List<Users> uList = sesFact.getCurrentSession().createQuery("from Users where username='"+ username + "'", Users.class).list();
         if(uList.size()==0) {
             return null;
         }

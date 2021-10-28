@@ -8,11 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users_table")
+@Table(name="users")
 
 public class Users {
-//@Id
-@Column(name="username", unique=true)
+@Id
+@Column(name="username")
 private String username;
 
 @Column(name="password")
