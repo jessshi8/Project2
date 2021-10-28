@@ -34,12 +34,14 @@ public class UserController {
 	@Autowired //less coupling effect decoupling 
 	public UserController(UserRepository uRepo) {
 		super();
+		//System.out.println("in project 2 control constructor");
 		this.uRepo = uRepo;
 	}
 	
 	@RequestMapping(value="/init", method=RequestMethod.GET, produces="application/json")// this method will be triggered when a get request is made at the URI input of
-	//localhost:port#/projectname/api/usercontroller/init
+	//localhost:8080/ReadMe-BookStore/api/usercontroller/init
 	public @ResponseBody List<Users> insertAllUsers(){
+		//System.out.println("in project 2 insertAllUsers");
 		List<Users>uList = new ArrayList<Users>(Arrays.asList(new Users("u1","password1","fname1", "lname1","test1@gmail.com","customer"),
 				new Users("u2","password2","fname2", "lname2","test2@gmail.com","customer"), new Users("u3","password3","fname3", "lname3","test3@gmail.com","customer")));
 		for(Users user: uList) {
@@ -50,7 +52,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value="/users/id", produces="application/json")//this will make the below method exposed via post http method at the 
-	//endpoint of localhost:#port/projectname/api/usercontroller/users/id
+	//endpoint of localhost:8080/ReadMe-BookStore/api/usercontroller/users/id
 	public ResponseEntity<Users> getUserByUsername(@RequestParam("username")String username){// alows me to create custom statuses 
 		//@requestparam will grab the specified value out of the parameters of the query parameters in the url,  url?keyname=value
 		return new ResponseEntity<Users>(uRepo.selectByUsername("username"), HttpStatus.I_AM_A_TEAPOT);

@@ -10,39 +10,49 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
         
         
-          <!-- tell spring core that we are using annotations -->
-        <context:annotation-config></context:annotation-config> 
-        <context:component-scan base-package="com.ReadMe"></context:component-scan>
-        
-        <!-- tell spring orm that we are using annotations -->
-        <tx:annotation-driven/>
-        
-          <!-- tell spring mvc that we are using annotations -->
-          <mvc:annotation-driven></mvc:annotation-driven>
+    <!-- Tell spring core that we are using annotations -->
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.ReadMe"></context:component-scan>
+	
+	<!-- Tell spring orm that we are using annotations (aka transactional annotations)-->
+	<tx:annotation-driven/>
+	
+	<!-- Tell spring-mvc that we are using annotations -->
+	<mvc:annotation-driven></mvc:annotation-driven>
           
-  <!-- CONFIGURE data base connection info and config hibernate -->
-<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-  <property name="driverClassName" value="org.postgresql.Driver"></property>
-  <property name="url" value="jdbc:postgresql://joeydb.cpthsxeojuz1.us-east-2.rds.amazonaws.com:5432/project2db"></property>
-  <property name="username" value=" project2user"></property>
-  <property name="password" value="p4ssw0rd"></property>
-</bean>
+  	<!-- CONFIGURE data base connection info and config hibernate -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	  <property name="driverClassName" value="org.postgresql.Driver"></property>
+	  <property name="url" value="jdbc:postgresql://joeydb.cpthsxeojuz1.us-east-2.rds.amazonaws.com:5432/project2db"></property>
+	  <property name="username" value="project2user"></property>
+	  <property name="password" value="p4ssw0rd"></property>
+	</bean>
 
-<!-- SESSION FACTORY -->
-<bean id ="sessionFactory" class ="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-   <property name="dataSource" ref="dataSource"></property>
-   <property name ="packagesToScan" value="com.ReadMe.model"></property>
-   <property name="hibernateProperties">
-        <props>
-        <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
-        <prop key="hibernate.show_sql">false</prop>
-        <prop key="hibernate.hbm2ddl.auto">update</prop> <!-- ***adapt to update as needed -->
-        </props>
-   </property>
-</bean>
-
-<!-- TRANSACTION MANAGGER:hibernate instance, responsible for managing transactions through annotations and ***=> less boilerplate code -->
-<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-<property name="sessionFactory" ref="sessionFactory"></property>
-</bean>      
+<!-- SESSION FACTORY
+	This will be a Hibernate bean instance, it will be responsible for creating and managing our hibernate sessions -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="packagesToScan" value="com.ReadMe.model"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- TRANSACTION MANAGER
+	This is a hibernate instance, it is responsible for managing transactions
+	
+		PROGRAMMATIC TRANSACTION MANAGEMENT
+			our transaction logic is coupled and hard coded into the source code
+			
+		DECLARATIVE TRANSACTION MANAGEMENT
+			Allows us to manage transactions through configuration and annotations, allows us to separate from business logic  -->
+			
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		
 </beans>

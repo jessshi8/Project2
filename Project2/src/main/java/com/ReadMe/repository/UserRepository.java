@@ -19,7 +19,7 @@ public class UserRepository {
     @Autowired
 	public UserRepository(SessionFactory sesFact) {
 		super();
-		System.out.println(sesFact);
+		//System.out.println("in project 2 repo constructor");
 		this.sesFact = sesFact;
 	}
      
