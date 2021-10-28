@@ -6,6 +6,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -13,6 +14,7 @@ import com.readme.model.User;
 import com.readme.util.HibernateUtil;
 
 public class UserDao {
+	public static final Logger log = Logger.getLogger(UserDao.class);
 	private HibernateUtil hUtil;
 	
 	public UserDao() {
@@ -25,6 +27,7 @@ public class UserDao {
 	}
 	
 	public void insert(User u) {
+		log.trace("UserDao insert() was invoked.");
 		Session session = hUtil.getSession();
 		Transaction tx = session.beginTransaction();
 		session.save(u);
@@ -32,6 +35,7 @@ public class UserDao {
 	}
 	
 	public void update(User u) {
+		log.trace("UserDao update() was invoked.");
 		Session session = hUtil.getSession();
 		Transaction tx = session.beginTransaction();
 		session.update(u);
@@ -39,6 +43,7 @@ public class UserDao {
 	}
 	
 	public void delete(User u) {
+		log.trace("UserDao delete() was invoked.");
 		Session session = hUtil.getSession();
 		Transaction tx = session.beginTransaction();
 		session.delete(u);
@@ -46,6 +51,7 @@ public class UserDao {
 	}
 	
 	public User getUserByUsername(String username) {
+		log.trace("UserDao getUserByUsername() was invoked.");
 		Session session = hUtil.getSession();
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<User> query = builder.createQuery(User.class);
@@ -60,6 +66,7 @@ public class UserDao {
 	}
 	
 	public List<User> getAll() {
+		log.trace("UserDao getAll() was invoked.");
 		Session session = hUtil.getSession();
 		List<User> uList = session.createQuery("from User", User.class).list();
 		return uList;

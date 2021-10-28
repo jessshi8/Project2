@@ -1,5 +1,7 @@
 package com.readme;
 
+import org.apache.log4j.Level;
+
 import com.readme.dao.UserDao;
 import com.readme.model.User;
 import com.readme.util.HibernateUtil;
@@ -10,6 +12,8 @@ public class MainDriver {
 	public static UserDao uDao = new UserDao(hUtil);
 	
 	public static void main(String[] args) {
+		HibernateUtil.log.setLevel(Level.TRACE);
+		UserDao.log.setLevel(Level.TRACE);
 		User u = new User("user123", "password", "Test", "User", "testuser@email.com", 1);
 		uDao.insert(u);
 		
@@ -19,8 +23,5 @@ public class MainDriver {
 		uDao.update(user);
 		
 		hUtil.closeFactory();
-		
-//		System.out.println(uDao.getUserByUsername("user123"));
-		
 	}
 }
