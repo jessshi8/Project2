@@ -23,7 +23,7 @@ public class Book {
 	@Column(name = "isbn")
 	private String isbn;
 	
-	@Column(name = "cover")
+	@Column(name = "book_cover")
 	private byte[] cover;
 	
 	@Column(name = "title")

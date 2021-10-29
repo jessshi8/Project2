@@ -17,6 +17,42 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
+		<!-- Hibernate Core Dependency -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.21.Final</version>
+		</dependency>
+		<!-- Hibernate Validator Dependency -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.2.0.Final</version>
+		</dependency>
+		<!-- Spring Core Dependency -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>5.3.9</version>
+		</dependency>
+		<!-- Spring Beans Dependency -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>5.3.9</version>
+		</dependency>
+		<!-- Spring Context Dependency -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.3.9</version>
+		</dependency>
+		<!-- Spring Aspects Dependency -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>5.2.12.RELEASE</version>
+        </dependency>
 		<!-- Spring Boot Starter Data JPA Dependency -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
