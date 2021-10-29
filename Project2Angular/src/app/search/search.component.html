@@ -1,0 +1,5 @@
+<div class="navbar-nav ml-2">
+    <input size="30" type="text" #searchInput (keyup.enter)="searchBooks(searchInput.value)"
+        placeholder="Search for books by title, author, or ISBN">
+    <button type="submit" (click)="searchBooks(searchInput.value)">Search</button>
+</div>

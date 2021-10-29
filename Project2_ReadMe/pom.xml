@@ -93,12 +93,6 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- PostgreSQL JDBC Dependency -->
-		<!-- <dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.18</version>
-		</dependency> -->
 		<!-- Lombok Dependency -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
