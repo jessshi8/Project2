@@ -1,14 +1,17 @@
 <!-- Navigation Bar -->
 <nav>
-  <a class="login-link" routerLink="/login">Login</a>
+  <a class="login-link" routerLink="/login">Login</a> / <a class="logout-link" routerLink="/logout">Logout</a>
   <br>
   <a class="register-link" routerLink="/register">Register an account</a>
   <br>
   <a class="bookmarks-link" routerLink="/bookmarks">Bookmarks</a>
   <br>
   <a class="cart-link" routerLink="/cart">Shopping Cart</a>
+  <br>
+  <a class="orders-link" routerLink="/orders">View past orders</a>
 </nav>
 <!-- Search Component -->
 <app-search></app-search>
+<br><br>
 <!-- Router Component -->
 <router-outlet></router-outlet>
