@@ -61,7 +61,7 @@ public class FrontController {
    	    return new ResponseEntity<>(null, HttpStatus.OK);
    	   }
       
-      @DeleteMapping("/{foodname}")
+      @DeleteMapping("/{username}")
       public ResponseEntity<String> deleteUser(@PathVariable("username") String username){
    	  User user = uServ.getUserByUsername(username);
    	   if(user==null) {
