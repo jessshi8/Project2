@@ -9,11 +9,7 @@ import { Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
   searchGroup = new FormGroup({
-    author: new FormControl(''),
-    title: new FormControl(''),
-    isbn: new FormControl(''),
-    publisher: new FormControl(''),
-    genre: new FormControl('')
+    type: new FormControl('')
   });
 
   constructor(private router: Router) { }
@@ -22,7 +18,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchBooks(search: FormGroup, keyword : string) {
-    console.log('Searched for', keyword);
+    console.log('Searched by', search.value, '; Searched for', keyword);
     this.router.navigateByUrl('/search/'+keyword);
   }
 

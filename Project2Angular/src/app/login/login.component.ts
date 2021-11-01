@@ -12,21 +12,32 @@ export class LoginComponent implements OnInit {
   userList: User[] = [];
   loginGroup = new FormGroup({
     username: new FormControl(''),
-    password: new FormControl('')
+    password: new FormControl(''),
+    firstname: new FormControl(''),
+    lastname: new FormControl(''),
+    email: new FormControl(''),
+    roleid: new FormControl('')
   });
 
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.loginService.getUsers().subscribe(
+    this.loginService.getAllUsers().subscribe(
       response => {
-        console.log(response);
-        this.userList=response;
+        this.userList = response;
       }
-    );
+    )
   }
 
   public login(user: FormGroup): void {
-    console.log(user);
+    let stringUser = JSON.stringify(user.value);
+    this.loginService.validateUser(stringUser).subscribe(
+      response => {
+        sessionStorage.setItem("currentUser", JSON.stringify(response));
+      },
+      error => {
+        console.warn("This error occurred: " + error);
+      }
+    )
   }
 }

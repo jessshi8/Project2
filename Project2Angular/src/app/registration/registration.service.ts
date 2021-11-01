@@ -7,7 +7,7 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class RegistrationService {
-  private urlBase = "http://localhost:9015/bookstore/users";
+  private urlBase = "http://localhost:9015/bookstore/register";
 
   constructor(private http: HttpClient) {}
 
