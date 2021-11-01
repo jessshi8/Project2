@@ -9,13 +9,13 @@ import { RegistrationService } from './registration.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
   registerGroup = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
     firstname: new FormControl(''),
     lastname: new FormControl(''),
     email: new FormControl(''),
-    username: new FormControl(''),
-    password: new FormControl('')
+    roleid: new FormControl('Customer')
   });
 
   constructor(private registrationService: RegistrationService) { }
@@ -25,6 +25,7 @@ export class RegistrationComponent implements OnInit {
 
   public submitUser(user: FormGroup) {
     let stringUser = JSON.stringify(user.value);
+    console.log(stringUser);
     this.registrationService.insertUser(stringUser).subscribe(
       response => {
         console.log(response);
