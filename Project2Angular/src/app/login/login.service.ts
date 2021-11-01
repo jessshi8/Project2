@@ -7,11 +7,11 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class LoginService {
-  private urlBase = "http://localhost:9015/users";
+  private urlBase = "http://localhost:9015/bookstore/login";
 
   constructor(private http: HttpClient) {}
 
-  public getUsers(): Observable<User[]> {
+  public getAllUsers(): Observable<User[]>{
     const httpHead = {
       headers: new HttpHeaders({
         'Content-Type':'application/json',
@@ -20,4 +20,15 @@ export class LoginService {
     };
     return this.http.get<User[]>(this.urlBase, httpHead);
   }
+
+  public validateUser(user:string): Observable<User[]> {
+    const httpHead = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Origin':'*'
+      })
+    };
+    return this.http.post<User[]>(this.urlBase, user, httpHead);
+  }
+
 }

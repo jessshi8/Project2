@@ -1,5 +1,27 @@
 <div class="navbar-nav ml-2">
-    <input size="30" type="text" #searchInput (keyup.enter)="searchBooks(searchInput.value)"
-        placeholder="Search for books by title, author, or ISBN">
-    <button type="submit" (click)="searchBooks(searchInput.value)">Search</button>
+    <form [formGroup]="searchGroup">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-6">
+                <select name="type" id="type">
+                    <option value="author">Author</option>
+                    <option value="title">Title</option>
+                    <option value="isbn">ISBN</option>
+                    <option value="publisher">Publisher</option>
+                    <option value="genre">Genre</option>
+                </select>
+                <input id="search-bar" type="text" #searchInput (keyup.enter)="searchBooks(searchGroup, searchInput.value)"
+                    placeholder="Search for books by title, author, ISBN, publisher, or genre">
+            </div>
+            <div class="col"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <button id="search-btn" type="submit" class="btn btn-dark" (click)="searchBooks(searchGroup, searchInput.value)">Search</button>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </form>
 </div>

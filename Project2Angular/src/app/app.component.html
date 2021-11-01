@@ -1,18 +1,35 @@
 <div class="container">
 <!-- Navigation Bar -->
 <nav>
-  <a class="login-link" routerLink="/login">Login</a>
-  <br>
-  <a class="register-link" routerLink="/register">Register an account</a>
-  <br>
-  <a class="bookmarks-link" routerLink="/bookmarks">Bookmarks</a>
-  <br>
-  <a class="cart-link" routerLink="/cart">Shopping Cart</a>
-  <br>
-  <a class="profile" routerLink="/profile">Profile</a>
+  <div class="row">
+    <div class="col-2">
+      <a class="login-link" routerLink="/login">Login</a> / <a href="#" (click)="logout()">Logout</a>
+    </div>
+    <div class="col-2">
+      <a class="register-link" routerLink="/register">Register Account</a>
+    </div>
+    <div class="col-2">
+      <a class="profile-link" routerLink="/profile">User Profile</a>
+    </div>
+    <div class="col-2">
+      <a class="bookmarks-link" routerLink="/bookmarks">Bookmarks</a>
+    </div>
+    <div class="col-2">
+      <a class="orders-link" routerLink="/orders">Past Orders</a>
+    </div>
+    <div class="col-2">
+      <a class="cart-link" routerLink="/cart">Shopping Cart</a>
+    </div> 
+    <div class="col-2">
+      <a class="profile" routerLink="/profile">Profile</a>
+    </div> 
+  </div>
 </nav>
+<br><br>
+<app-home></app-home>
 <!-- Search Component -->
 <app-search></app-search>
+<br><br>
 <!-- Router Component -->
 <router-outlet></router-outlet>
 </div>

@@ -7,7 +7,7 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class RegistrationService {
-  private urlBase = "http://localhost:9015/users";
+  private urlBase = "http://localhost:9015/bookstore/register";
 
   constructor(private http: HttpClient) {}
 
@@ -18,6 +18,6 @@ export class RegistrationService {
         'Access-Control-Allow-Origin':'*'
       })
     };
-    return this.http.post<User[]>(this.urlBase, httpHead);
+    return this.http.post<User[]>(this.urlBase, user, httpHead);
   }
 }
