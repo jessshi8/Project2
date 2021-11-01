@@ -1,11 +1,15 @@
 package com.ReadMe.controller;
 
+
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ReadMe.model.Book;
 import com.ReadMe.model.User;
 import com.ReadMe.service.BookService;
+import com.ReadMe.service.EmailSenderService;
 import com.ReadMe.service.UserService;
 
 import lombok.NoArgsConstructor;
@@ -31,6 +36,8 @@ import lombok.NoArgsConstructor;
 public class FrontController {
 	private UserService uServ;
 	private BookService bServ;
+	@Autowired
+	private EmailSenderService eServ;
 	
 	@Autowired
 	public FrontController(UserService uServ, BookService bServ) {
@@ -126,7 +133,7 @@ public class FrontController {
 	
 	//GET: localhost:9015/bookstore/users/initial
 	@GetMapping("/users/initial")
-    public ResponseEntity<List<User>>  insertInitialValues(){
+    public ResponseEntity<List<User>> insertInitialValues(){
     	List<User> uList = new ArrayList<User>(Arrays.asList(new User("user1","password1","sonia", "bench","sonia@gmail.com","customer")));
     	for (User user:uList) {
     		uServ.insertUser(user);
@@ -136,7 +143,7 @@ public class FrontController {
 
 	//GET: localhost:9015/bookstore/users
 	@GetMapping("/users")
-	public ResponseEntity<List<User>>getAllUsers(){
+	public ResponseEntity<List<User>> getAllUsers(){
 		return new ResponseEntity<List<User>>(uServ.getAllUsers(), HttpStatus.OK);
 	}
 	
@@ -166,12 +173,51 @@ public class FrontController {
 	//Include user in JSON format in the request body
 	@PostMapping("/users")
 	public ResponseEntity<Object> insertUser(@RequestBody User user){
-		//System.out.println(user);
 		if(uServ.getUserByUsername(user.getUsername()) != null) {
-			return new ResponseEntity<>("user of that name already exists",HttpStatus.FORBIDDEN);
+			return new ResponseEntity<>("User of that username already exists", HttpStatus.FORBIDDEN);
 		}
+		String password = "";
+		for (int i = 0; i < 9; i++) {
+			password += randomCharacter();
+		}
+		String encrypted = sha256(password);
+		user.setPassword(encrypted);
 		uServ.insertUser(user);
+		eServ.sendEmail(user.getEmail(), "ReadMe: Temporary Password", 
+				"Thank you for registering an account, " + user.getFirstname() + " " + user.getLastname() +
+				".\nYour temporary password is: " + password + ".\nYou may reset your password after logging in.");
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
 	}
 	
+	private static char randomCharacter() {
+		int rand = (int)(Math.random()*62);
+		if(rand <= 9) {
+			int number = rand + 48;
+			return (char)(number);
+		} else if(rand <= 35) {
+			int uppercase = rand + 55;
+			return (char)(uppercase);
+		} else {
+			int lowercase = rand + 61;
+			return (char)(lowercase);
+		}
+	}
+	
+	private static String sha256(String base) {
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			final byte[] hash = digest.digest(base.getBytes("UTF-8"));
+			final StringBuilder hexString = new StringBuilder();
+			for (int i = 0; i < hash.length; i++) {
+				final String hex = Integer.toHexString(0xff & hash[i]);
+				if (hex.length() == 1)
+					hexString.append('0');
+				hexString.append(hex);
+			}
+			return hexString.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
