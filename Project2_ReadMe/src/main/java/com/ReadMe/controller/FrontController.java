@@ -168,6 +168,19 @@ public class FrontController {
 		return new ResponseEntity<String>("user was deleted", HttpStatus.NOT_FOUND);
 
 	}
+	
+	//POST: localhost:9015/bookstore/login
+	//Include user in JSON format in the request body
+	@PostMapping("/login")
+	public ResponseEntity<Object> validateUser(@RequestBody User user){
+		List<User> userList = uServ.getAllUsers();
+		for (User u : userList) {
+			if ((user.getUsername().equals(u.getUsername())) && (sha256(user.getPassword()).equals(u.getPassword()))) {
+				return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
+			}
+		}
+		return new ResponseEntity<>("Invalid login", HttpStatus.FORBIDDEN);
+	}
     
 	//POST: localhost:9015/bookstore/users
 	//Include user in JSON format in the request body
