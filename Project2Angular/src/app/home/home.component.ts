@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,24 +8,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  searchGroup = new FormGroup({
-    type: new FormControl('')
-  });
   public sessionUser:string|null = null;
   public user:any = null;
+  filterForm!: FormGroup;
+  filters = [
+    {id: 1, name: "Author"},
+    {id: 2, name: "Title"},
+    {id: 3, name: "ISBN"},
+    {id: 4, name: "Publisher"},
+    {id: 5, name: "Genre"}
+  ]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.sessionUser = window.sessionStorage.getItem("currentUser");
     if (this.sessionUser != null) {
       this.user = JSON.parse(this.sessionUser);
     }
+    this.filterForm = this.formBuilder.group({
+      filter: [null]
+    });
   }
 
-  searchBooks(search: FormGroup, keyword : string) {
-    console.log('Searched by', search.value, '; Searched for', keyword);
+  searchBooks(keyword : string) {
+    console.log('Searched for', keyword);
     this.router.navigateByUrl('/search/'+keyword);
+    console.log(this.filterForm.value);
   }
-
 }

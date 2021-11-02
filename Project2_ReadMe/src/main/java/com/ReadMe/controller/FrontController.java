@@ -224,7 +224,7 @@ public class FrontController {
 		user.setPassword(encrypted);
 		uServ.insertUser(user);
 		eServ.sendEmail(user.getEmail(), "ReadMe: Temporary Password", 
-				"Thank you for registering an account, " + user.getFirstname() + " " + user.getLastname() +
+				"Thank you for registering an account, " + user.getFirstname() + 
 				".\nYour temporary password is: " + password + ".\nYou may reset your password after logging in.");
 		Main.log.info("Inserted user with username " + user.getUsername() + " into database");
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
@@ -237,7 +237,7 @@ public class FrontController {
 		if(uServ.getUserByUsername(user.getUsername()) != null) {
 			uServ.updatetUser(user);
 			eServ.sendEmail(user.getEmail(), "ReadMe: Password Updated", 
-					"Thank you for updating your password , " + user.getFirstname() + " " + user.getLastname() +
+					"Thank you for updating your password , " + user.getFirstname() + 
 					".\nYour new password is: " + user.getPassword() + " .");
 			Main.log.info("Updated user with username " + user.getUsername());
 			return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
