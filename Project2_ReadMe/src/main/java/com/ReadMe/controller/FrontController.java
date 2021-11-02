@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ReadMe.Main;
 import com.ReadMe.model.Book;
 import com.ReadMe.model.User;
 import com.ReadMe.service.BookService;
@@ -49,6 +50,7 @@ public class FrontController {
 	//GET: localhost:9015/bookstore/books
 	@GetMapping("/books")
 	public ResponseEntity<List<Book>> getAllBooks() {
+		Main.log.info("Retrieved all books from database");
 		return new ResponseEntity<List<Book>>(bServ.getAllBooks(), HttpStatus.OK);
 	}
 	
@@ -57,9 +59,11 @@ public class FrontController {
 	public ResponseEntity<Book> getBookByIsbn(@PathVariable("isbn") String isbn) {
 		Optional<Book> book = bServ.getBookByIsbn(isbn);
 		if (book.isPresent()) {
+			Main.log.info("Retrieved book with ISBN " + isbn + " from database");
 			return new ResponseEntity<Book>(book.get(), HttpStatus.OK);
 		}
 		
+		Main.log.warn("Book with ISBN " + isbn + " not found");
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
@@ -68,9 +72,11 @@ public class FrontController {
 	public ResponseEntity<List<Book>> getBookByTitle(@PathVariable("title") String title) {
 		List<Book> bookList = bServ.getBookByTitle(title);
 		if (bookList == null || bookList.size() == 0) {
+			Main.log.warn("Book with title " + title + " not found");
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 		
+		Main.log.info("Retrieved books with title " + title + " from database");
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
@@ -79,9 +85,11 @@ public class FrontController {
 	public ResponseEntity<List<Book>> getBookByAuthor(@PathVariable("author") String author) {
 		List<Book> bookList = bServ.getBookByAuthor(author);
 		if (bookList == null || bookList.size() == 0) {
+			Main.log.warn("Book with author " + author + " not found");
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 		
+		Main.log.info("Retrieved books with author " + author + " from database");
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
@@ -90,9 +98,11 @@ public class FrontController {
 	public ResponseEntity<List<Book>> getBookByPublisher(@PathVariable("publisher") String publisher) {
 		List<Book> bookList = bServ.getBookByPublisher(publisher);
 		if (bookList == null || bookList.size() == 0) {
+			Main.log.warn("Book with publisher " + publisher + " not found");
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 		
+		Main.log.info("Retrieved books with publisher " + publisher + " from database");
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
@@ -101,9 +111,11 @@ public class FrontController {
 	public ResponseEntity<List<Book>> getBookByGenre(@PathVariable("genre") String genre) {
 		List<Book> bookList = bServ.getBookByGenre(genre);
 		if (bookList == null || bookList.size() == 0) {
+			Main.log.warn("Book with genre " + genre + " not found");
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 		
+		Main.log.info("Retrieved books with genre " + genre + " from database");
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
@@ -112,10 +124,12 @@ public class FrontController {
 	@PostMapping("/books")
 	public ResponseEntity<Object> insertBook(@RequestBody Book book) {
 		if (bServ.getBookByIsbn(book.getIsbn()).isPresent()) {
+			Main.log.warn("Failed to insert book with ISBN " + book.getIsbn() + ": Book with that ISBN already exists");
 			return new ResponseEntity<>("Book with that ISBN already exists.", HttpStatus.FORBIDDEN);
 		}
 		
 		bServ.insertBook(book);
+		Main.log.info("Inserted book with ISBN " + book.getIsbn() + " into database");
 		return new ResponseEntity<>(bServ.getBookByIsbn(book.getIsbn()).get(), HttpStatus.ACCEPTED);
 	}
 	
@@ -125,25 +139,28 @@ public class FrontController {
 		Optional<Book> book = bServ.getBookByIsbn(isbn);
 		if (book.isPresent()) {
 			bServ.deleteBook(book.get());
+			Main.log.info("Deleted book with ISBN " + isbn + " from database");
 			return new ResponseEntity<String>("Book was deleted", HttpStatus.ACCEPTED);
 		}
 		
+		Main.log.warn("Failed to delete book with ISBN " + isbn + ": No book with that ISBN");
 		return new ResponseEntity<String>("No book with that ISBN", HttpStatus.NOT_FOUND);
 	}
 	
 	//GET: localhost:9015/bookstore/users/initial
-	@GetMapping("/users/initial")
-    public ResponseEntity<List<User>> insertInitialValues(){
-    	List<User> uList = new ArrayList<User>(Arrays.asList(new User("user1","password1","sonia", "bench","sonia@gmail.com","customer")));
-    	for (User user:uList) {
-    		uServ.insertUser(user);
-    	}
-        return new ResponseEntity<List<User>>(uServ.getAllUsers(), HttpStatus.CREATED);
-	}
+	/*
+	 * @GetMapping("/users/initial") public ResponseEntity<List<User>>
+	 * insertInitialValues(){ List<User> uList = new
+	 * ArrayList<User>(Arrays.asList(new User("user1","password1","sonia",
+	 * "bench","sonia@gmail.com","customer"))); for (User user:uList) {
+	 * uServ.insertUser(user); } return new
+	 * ResponseEntity<List<User>>(uServ.getAllUsers(), HttpStatus.CREATED); }
+	 */
 
 	//GET: localhost:9015/bookstore/users
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUsers(){
+		Main.log.info("Retrieved all users from database");
 		return new ResponseEntity<List<User>>(uServ.getAllUsers(), HttpStatus.OK);
 	}
 	
@@ -152,8 +169,11 @@ public class FrontController {
 	public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username){
 		User user = uServ.getUserByUsername(username);
 		if(user==null) {
+			Main.log.warn("User with username " + username + " not found");
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
+		
+		Main.log.info("Retrieved user with username " + username + " from database");
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
     
@@ -162,9 +182,12 @@ public class FrontController {
 	public ResponseEntity<String> deleteUser(@PathVariable("username") String username){
 		User user = uServ.getUserByUsername(username);
 		if(user==null) {
+			Main.log.warn("Failed to delete user with username " + username + ": No user of that name was found");
 			return new ResponseEntity<String>("No user of that name was found", HttpStatus.NOT_FOUND);
 		}
+		
 		uServ.deleteUser(user);
+		Main.log.info("Deleted user with username " + username + " from database");
 		return new ResponseEntity<String>("user was deleted", HttpStatus.NOT_FOUND);
 
 	}
@@ -176,6 +199,7 @@ public class FrontController {
 		List<User> userList = uServ.getAllUsers();
 		for (User u : userList) {
 			if ((user.getUsername().equals(u.getUsername())) && (sha256(user.getPassword()).equals(u.getPassword()))) {
+				Main.log.info("Login from user with username " + user.getUsername());
 				return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
 			}
 		}
@@ -187,6 +211,7 @@ public class FrontController {
 	@PostMapping("/users")
 	public ResponseEntity<Object> insertUser(@RequestBody User user){
 		if(uServ.getUserByUsername(user.getUsername()) != null) {
+			Main.log.warn("Failed to insert user with username " + user.getUsername() + ": User of that username already exists");
 			return new ResponseEntity<>("User of that username already exists", HttpStatus.FORBIDDEN);
 		}
 		String password = "";
@@ -199,6 +224,7 @@ public class FrontController {
 		eServ.sendEmail(user.getEmail(), "ReadMe: Temporary Password", 
 				"Thank you for registering an account, " + user.getFirstname() + " " + user.getLastname() +
 				".\nYour temporary password is: " + password + ".\nYou may reset your password after logging in.");
+		Main.log.info("Inserted user with username " + user.getUsername() + " into database");
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
 	}
 	
@@ -211,8 +237,10 @@ public class FrontController {
 			eServ.sendEmail(user.getEmail(), "ReadMe: Password Updated", 
 					"Thank you for updating your password , " + user.getFirstname() + " " + user.getLastname() +
 					".\nYour new password is: " + user.getPassword() + " .");
+			Main.log.info("Updated user with username " + user.getUsername());
 			return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
 		}
+		Main.log.warn("Failed to update user with username " + user.getUsername() + ": User of that username does not exist");
 		return new ResponseEntity<>("User does not exist!", HttpStatus.FORBIDDEN);
 	}
 	//--------------------------------
