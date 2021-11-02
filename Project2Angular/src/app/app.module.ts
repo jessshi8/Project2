@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { CatalogComponent } from './catalog/catalog.component';
@@ -17,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegistrationComponent},
   {path: 'profile', component: ProfileComponent},
@@ -26,13 +26,11 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'orders', component: OrdersComponent},
   {path: 'search/:keyword', component: CatalogComponent}
-
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent,
     LoginComponent,
     RegistrationComponent,
     CatalogComponent,
