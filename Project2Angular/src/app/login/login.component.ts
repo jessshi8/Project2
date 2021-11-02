@@ -16,17 +16,20 @@ export class LoginComponent implements OnInit {
     firstname: new FormControl(''),
     lastname: new FormControl(''),
     email: new FormControl(''),
-    roleid: new FormControl('')
+    roleid: new FormControl(''),
+    orders: new FormControl([]),
+    cart: new FormControl([]),
+    bookmarks: new FormControl([])
   });
 
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.loginService.getAllUsers().subscribe(
+    /* this.loginService.getAllUsers().subscribe(
       response => {
         this.userList = response;
       }
-    )
+    ) */
   }
 
   public login(user: FormGroup): void {
