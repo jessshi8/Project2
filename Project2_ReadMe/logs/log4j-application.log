@@ -5,3 +5,28 @@
 2021-11-02 12:59:13 INFO  Main:163 - Retrieved all users from database
 2021-11-02 13:00:24 INFO  Main:176 - Retrieved user with username jessshi8 from database
 2021-11-02 13:28:59 INFO  Main:192 - Deleted user with username orderstest from database
+2021-11-02 14:54:16 INFO  Main:79 - Retrieved books with title Alice's Adventures in Wonderland from database
+2021-11-02 14:57:52 WARN  Main:75 - Book with title no book here not found
+2021-11-02 15:02:12 INFO  Main:118 - Retrieved books with genre Fantasy from database
+2021-11-02 15:02:12 INFO  Main:79 - Retrieved books with title Alice's Adventures in Wonderland from database
+2021-11-02 15:02:12 WARN  Main:88 - Book with author no author here not found
+2021-11-02 15:02:12 INFO  Main:92 - Retrieved books with author Elizabeth Acevedo from database
+2021-11-02 15:02:12 WARN  Main:101 - Book with publisher no publisher here not found
+2021-11-02 15:02:12 INFO  Main:105 - Retrieved books with publisher HarperCollins from database
+2021-11-02 15:02:12 WARN  Main:114 - Book with genre no genre here not found
+2021-11-02 15:02:12 WARN  Main:75 - Book with title no book here not found
+2021-11-02 15:08:48 INFO  Main:165 - Retrieved all users from database
+2021-11-02 15:10:59 INFO  Main:192 - Deleted user with username orderstest from database
+2021-11-02 15:16:42 INFO  Main:165 - Retrieved all users from database
+2021-11-02 15:16:53 INFO  Main:229 - Inserted user with username user4 into database
+2021-11-02 15:24:49 INFO  Main:118 - Retrieved books with genre Fantasy from database
+2021-11-02 15:24:49 INFO  Main:79 - Retrieved books with title Alice's Adventures in Wonderland from database
+2021-11-02 15:24:49 WARN  Main:88 - Book with author no author here not found
+2021-11-02 15:24:49 INFO  Main:92 - Retrieved books with author Elizabeth Acevedo from database
+2021-11-02 15:24:49 WARN  Main:101 - Book with publisher no publisher here not found
+2021-11-02 15:24:49 INFO  Main:105 - Retrieved books with publisher HarperCollins from database
+2021-11-02 15:24:49 INFO  Main:178 - Retrieved user with username username from database
+2021-11-02 15:24:49 WARN  Main:174 - User with username invalid not found
+2021-11-02 15:24:49 WARN  Main:114 - Book with genre no genre here not found
+2021-11-02 15:24:49 WARN  Main:75 - Book with title no book here not found
+2021-11-02 15:40:02 INFO  Main:229 - Inserted user with username username into database
