@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { User } from '../user';
 import { RegistrationService } from './registration.service';
 
 @Component({
@@ -15,7 +14,10 @@ export class RegistrationComponent implements OnInit {
     firstname: new FormControl(''),
     lastname: new FormControl(''),
     email: new FormControl(''),
-    roleid: new FormControl('Customer')
+    roleid: new FormControl('Customer'),
+    orders: new FormControl([]),
+    cart: new FormControl([]),
+    bookmarks: new FormControl([])
   });
 
   constructor(private registrationService: RegistrationService) { }
