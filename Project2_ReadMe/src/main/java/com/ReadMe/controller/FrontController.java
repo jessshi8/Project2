@@ -210,7 +210,7 @@ public class FrontController {
     
 	//POST: localhost:9015/bookstore/users
 	//Include user in JSON format in the request body
-	@PostMapping("/users")
+	@PostMapping("/register")
 	public ResponseEntity<Object> insertUser(@RequestBody User user){
 		if(uServ.getUserByUsername(user.getUsername()) != null) {
 			Main.log.warn("Failed to insert user with username " + user.getUsername() + ": User of that username already exists");

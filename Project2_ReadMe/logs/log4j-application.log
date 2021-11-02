@@ -30,3 +30,6 @@
 2021-11-02 15:24:49 WARN  Main:114 - Book with genre no genre here not found
 2021-11-02 15:24:49 WARN  Main:75 - Book with title no book here not found
 2021-11-02 15:40:02 INFO  Main:229 - Inserted user with username username into database
+2021-11-02 15:55:45 INFO  Main:204 - Login from user with username user4
+2021-11-02 16:01:41 INFO  Main:229 - Inserted user with username austen_s into database
+2021-11-02 16:02:56 INFO  Main:204 - Login from user with username austen_s
