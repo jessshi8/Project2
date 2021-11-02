@@ -13,7 +13,6 @@ import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { CartComponent } from './cart/cart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
-import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 
 
