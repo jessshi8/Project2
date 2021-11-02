@@ -11,7 +11,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  public getAllUsers(): Observable<User[]>{
+  /* public getAllUsers(): Observable<User[]>{
     const httpHead = {
       headers: new HttpHeaders({
         'Content-Type':'application/json',
@@ -19,7 +19,7 @@ export class LoginService {
       })
     };
     return this.http.get<User[]>(this.urlBase, httpHead);
-  }
+  } */
 
   public validateUser(user:string): Observable<User[]> {
     const httpHead = {
