@@ -1,30 +1,43 @@
 <div class="container">
-<!-- Navigation Bar -->
-<nav>
-  <div class="row">
-    <div class="col-2">
-      <a class="login-link" routerLink="/login">Login</a> / <a href="#" (click)="logout()">Logout</a>
+<!-- Navigation Bar (redone using boostrap) -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">ReadMe.com</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/register">Register Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/profile">User Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/bookmarks">Bookmarks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/orders">Past Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/cart">Shopping Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
-    <div class="col-2">
-      <a class="register-link" routerLink="/register">Register Account</a>
-    </div>
-    <div class="col-2">
-      <a class="profile-link" routerLink="/profile">User Profile</a>
-    </div>
-    <div class="col-2">
-      <a class="bookmarks-link" routerLink="/bookmarks">Bookmarks</a>
-    </div>
-    <div class="col-2">
-      <a class="orders-link" routerLink="/orders">Past Orders</a>
-    </div>
-    <div class="col-2">
-      <a class="cart-link" routerLink="/cart">Shopping Cart</a>
-    </div> 
-    <div class="col-2">
-      <a class="profile" routerLink="/profile">Profile</a>
-    </div> 
   </div>
 </nav>
+<!-- Contents -->
 <br><br>
 <app-home></app-home>
 <!-- Search Component -->
