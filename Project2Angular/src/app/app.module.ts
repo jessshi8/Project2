@@ -11,9 +11,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { CartComponent } from './cart/cart.component';
-import { OrdersComponent } from './orders/orders.component';
 import { ProfileComponent } from './profile/profile.component';
+import { OrdersComponent } from './orders/orders.component';
 import { HomeComponent } from './home/home.component';
+
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -21,8 +22,11 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'bookmarks', component: BookmarksComponent},
   {path: 'cart', component: CartComponent},
+  {path: 'search/:keyword', component: CatalogComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: 'orders', component: OrdersComponent},
   {path: 'search/:keyword', component: CatalogComponent}
+
 ];
 
 @NgModule({
@@ -34,9 +38,11 @@ const routes: Routes = [
     CatalogComponent,
     BookmarksComponent,
     CartComponent,
+    ProfileComponent,
     OrdersComponent,
     ProfileComponent,
     HomeComponent
+
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule.forRoot(routes)
