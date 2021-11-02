@@ -1,8 +1,13 @@
 package com.ReadMe.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -35,14 +40,26 @@ public class User {
 
 	@Column(name = "roleid")
 	private String roleid;
-
-	public User(String password, String firstname, String lastname, String email, String roleid) {
+	
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Book> orders;
+	
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Book> cart;
+	
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Book> bookmarks;
+	
+	public User(String password, String firstname, String lastname, String email, String roleid, List<Book> orders, List<Book> cart, List<Book> bookmarks) {
 		super();
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.roleid = roleid;
+		this.orders = orders;
+		this.cart = cart;
+		this.bookmarks = bookmarks;
 	}
 
 	@Override
