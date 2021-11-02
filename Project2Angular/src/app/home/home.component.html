@@ -1,8 +1,3 @@
-<!-- <div *ngIf="sessionUser!=null; then simpleGreeting">
-    <h3 id="greeting">Welcome {{user.firstname}}!</h3>
-</div>
-<ng-template #simpleGreeting>
-    <h3 id="greeting">Welcome!</h3>
-</ng-template> -->
-
-<h3 id="greeting">Welcome {{user.firstname}}!</h3>
+<div *ngIf="sessionUser!=null; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock> <h3 id="greeting">Welcome {{user.firstname}}!</h3></ng-template>
+<ng-template #elseBlock><h3 id="greeting">Welcome!</h3></ng-template>
