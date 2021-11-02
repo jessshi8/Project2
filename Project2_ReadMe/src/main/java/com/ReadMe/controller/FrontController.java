@@ -37,14 +37,14 @@ import lombok.NoArgsConstructor;
 public class FrontController {
 	private UserService uServ;
 	private BookService bServ;
-	@Autowired
 	private EmailSenderService eServ;
 	
 	@Autowired
-	public FrontController(UserService uServ, BookService bServ) {
+	public FrontController(UserService uServ, BookService bServ, EmailSenderService eServ) {
 		super();
 		this.uServ = uServ;
 		this.bServ = bServ;
+		this.eServ = eServ;
 	}
 	
 	//GET: localhost:9015/bookstore/books
@@ -148,14 +148,16 @@ public class FrontController {
 	}
 	
 	//GET: localhost:9015/bookstore/users/initial
-	/*
-	 * @GetMapping("/users/initial") public ResponseEntity<List<User>>
-	 * insertInitialValues(){ List<User> uList = new
-	 * ArrayList<User>(Arrays.asList(new User("user1","password1","sonia",
-	 * "bench","sonia@gmail.com","customer"))); for (User user:uList) {
-	 * uServ.insertUser(user); } return new
-	 * ResponseEntity<List<User>>(uServ.getAllUsers(), HttpStatus.CREATED); }
-	 */
+	@GetMapping("/users/initial") 
+	public ResponseEntity<List<User>>insertInitialValues() {
+		List<Book> orders = bServ.getBookByAuthor("Nicholas Sparks");
+		List<User> uList = new ArrayList<User>(Arrays.asList(new User("orderstest","password","test","user","test@gmail.com","Customer", orders, null, null))); 
+		for (User user:uList) {
+			uServ.insertUser(user); 
+		} 
+		return new ResponseEntity<List<User>>(uServ.getAllUsers(), HttpStatus.CREATED); 
+	}
+	 
 
 	//GET: localhost:9015/bookstore/users
 	@GetMapping("/users")
@@ -188,7 +190,7 @@ public class FrontController {
 		
 		uServ.deleteUser(user);
 		Main.log.info("Deleted user with username " + username + " from database");
-		return new ResponseEntity<String>("user was deleted", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("User was deleted", HttpStatus.OK);
 
 	}
 	
@@ -208,7 +210,7 @@ public class FrontController {
     
 	//POST: localhost:9015/bookstore/users
 	//Include user in JSON format in the request body
-	@PostMapping("/users")
+	@PostMapping("/register")
 	public ResponseEntity<Object> insertUser(@RequestBody User user){
 		if(uServ.getUserByUsername(user.getUsername()) != null) {
 			Main.log.warn("Failed to insert user with username " + user.getUsername() + ": User of that username already exists");
