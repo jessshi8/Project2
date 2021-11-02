@@ -2,3 +2,6 @@
 2021-11-02 12:25:18 INFO  Main:176 - Retrieved user with username user1 from database
 2021-11-02 12:26:50 INFO  Main:227 - Inserted user with username user2 into database
 2021-11-02 12:33:13 INFO  Main:202 - Login from user with username user2
+2021-11-02 12:59:13 INFO  Main:163 - Retrieved all users from database
+2021-11-02 13:00:24 INFO  Main:176 - Retrieved user with username jessshi8 from database
+2021-11-02 13:28:59 INFO  Main:192 - Deleted user with username orderstest from database
