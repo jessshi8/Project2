@@ -202,6 +202,21 @@ public class FrontController {
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
 	}
 	
+	//Update User made by Joey--------------
+	@PostMapping("/updateuser")
+	public ResponseEntity<Object> resetUser(@RequestBody User user){
+		System.out.println("In resetuser");
+		if(uServ.getUserByUsername(user.getUsername()) != null) {
+			uServ.updatetUser(user);
+			eServ.sendEmail(user.getEmail(), "ReadMe: Password Updated", 
+					"Thank you for updating your password , " + user.getFirstname() + " " + user.getLastname() +
+					".\nYour new password is: " + user.getPassword() + " .");
+			return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<>("User does not exist!", HttpStatus.FORBIDDEN);
+	}
+	//--------------------------------
+	
 	private static char randomCharacter() {
 		int rand = (int)(Math.random()*62);
 		if(rand <= 9) {
