@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     this.loginService.validateUser(stringUser).subscribe(
       response => {
         sessionStorage.setItem("currentUser", JSON.stringify(response));
+        window.location.href="http://localhost:4200/";
       },
       error => {
         console.warn("This error occurred: " + error);
