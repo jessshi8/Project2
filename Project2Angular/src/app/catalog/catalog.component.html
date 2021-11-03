@@ -1,11 +1,12 @@
 <div class="container">
     <h1 id="title">Search Results</h1>
     <hr class="solid">
-    <div *ngIf="bookList.length==1; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>{{bookList}}</ng-template>
+    <tr *ngFor="let book of bookList">
+        <td>{{book.title}}</td>
+    </tr>
+    <!-- <div *ngIf="bookList.length==undefined; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>{{bookList[0].title}}</ng-template>
     <ng-template #elseBlock>
-        <tr *ngFor="let book of bookList">
-            <td>{{book.title}}</td>
-        </tr>
-    </ng-template>
+        
+    </ng-template> -->
 </div>

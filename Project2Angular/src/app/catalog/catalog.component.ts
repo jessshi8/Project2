@@ -10,7 +10,7 @@ import { CatalogService } from './catalog.service';
 export class CatalogComponent implements OnInit {
   public keyword:string|null = null;
   public filter:any;
-  bookList:Book[] = [];
+  public bookList: Book[] = [];
 
   constructor(private catalogServ:CatalogService) { }
 
@@ -27,7 +27,6 @@ export class CatalogComponent implements OnInit {
           this.catalogServ.getBooksByAuthor(word).subscribe(
             response=>{
               this.bookList=response;
-              console.log(this.bookList);
             }
           );
           break;
@@ -45,8 +44,7 @@ export class CatalogComponent implements OnInit {
           console.log("ISBN");
           this.catalogServ.getBooksByISBN(word).subscribe(
             response=>{
-              this.bookList=response;
-              console.log(this.bookList);
+              this.bookList = response;
             }
           );
           break;

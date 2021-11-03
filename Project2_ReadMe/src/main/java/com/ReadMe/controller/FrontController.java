@@ -55,16 +55,28 @@ public class FrontController {
 	}
 	
 	//GET: localhost:9015/bookstore/books/isbn/{isbn}
+	/*
+	 * @GetMapping("/books/isbn/{isbn}") public ResponseEntity<Book>
+	 * getBookByIsbn(@PathVariable("isbn") String isbn) { Optional<Book> book =
+	 * bServ.getBookByIsbn(isbn); if (book.isPresent()) {
+	 * Main.log.info("Retrieved book with ISBN " + isbn + " from database"); return
+	 * new ResponseEntity<Book>(book.get(), HttpStatus.OK); }
+	 * 
+	 * Main.log.warn("Book with ISBN " + isbn + " not found"); return new
+	 * ResponseEntity<>(null, HttpStatus.NOT_FOUND); }
+	 */
+	
+	//GET: localhost:9015/bookstore/books/title/{title}
 	@GetMapping("/books/isbn/{isbn}")
-	public ResponseEntity<Book> getBookByIsbn(@PathVariable("isbn") String isbn) {
-		Optional<Book> book = bServ.getBookByIsbn(isbn);
-		if (book.isPresent()) {
-			Main.log.info("Retrieved book with ISBN " + isbn + " from database");
-			return new ResponseEntity<Book>(book.get(), HttpStatus.OK);
+	public ResponseEntity<List<Book>> getBookByIsbn(@PathVariable("isbn") String isbn) {
+		List<Book> bookList = bServ.getBookByIsbn(isbn);
+		if (bookList == null || bookList.size() == 0) {
+			Main.log.warn("Book with isbn " + isbn + " not found");
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 		
-		Main.log.warn("Book with ISBN " + isbn + " not found");
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		Main.log.info("Retrieved books with isbn " + isbn + " from database");
+		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
 	//GET: localhost:9015/bookstore/books/title/{title}
@@ -123,29 +135,32 @@ public class FrontController {
 	//Include book in JSON format in the request body
 	@PostMapping("/books")
 	public ResponseEntity<Object> insertBook(@RequestBody Book book) {
-		if (bServ.getBookByIsbn(book.getIsbn()).isPresent()) {
-			Main.log.warn("Failed to insert book with ISBN " + book.getIsbn() + ": Book with that ISBN already exists");
-			return new ResponseEntity<>("Book with that ISBN already exists.", HttpStatus.FORBIDDEN);
+		if (bServ.getBookById(book.getIsbn()).isPresent()) {
+			Main.log.warn("Failed to insert book with ISBN " + book.getIsbn()
+					+ ": Book with that ISBN already exists");
+			return new ResponseEntity<>("Book with that ISBN already exists.",
+					HttpStatus.FORBIDDEN);
 		}
-		
+
 		bServ.insertBook(book);
 		Main.log.info("Inserted book with ISBN " + book.getIsbn() + " into database");
-		return new ResponseEntity<>(bServ.getBookByIsbn(book.getIsbn()).get(), HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(bServ.getBookById(book.getIsbn()).get(), HttpStatus.ACCEPTED);
 	}
 	
 	//DELETE: localhost:9015/bookstore/isbn/{isbn}
 	@DeleteMapping("/books/isbn/{isbn}")
 	public ResponseEntity<String> deleteBook(@PathVariable("isbn") String isbn) {
-		Optional<Book> book = bServ.getBookByIsbn(isbn);
+		Optional<Book> book = bServ.getBookById(isbn);
 		if (book.isPresent()) {
 			bServ.deleteBook(book.get());
 			Main.log.info("Deleted book with ISBN " + isbn + " from database");
 			return new ResponseEntity<String>("Book was deleted", HttpStatus.ACCEPTED);
 		}
-		
+
 		Main.log.warn("Failed to delete book with ISBN " + isbn + ": No book with that ISBN");
 		return new ResponseEntity<String>("No book with that ISBN", HttpStatus.NOT_FOUND);
 	}
+	 
 	
 	//GET: localhost:9015/bookstore/users/initial
 	@GetMapping("/users/initial") 

@@ -29,8 +29,12 @@ public class BookService {
 		bRepo.delete(book);
 	}
 	
-	public Optional<Book> getBookByIsbn(String isbn) {
+	public Optional<Book> getBookById(String isbn) {
 		return bRepo.findById(isbn);
+	}
+	
+	public List<Book> getBookByIsbn(String isbn) {
+		return bRepo.findByIsbn(isbn);
 	}
 	
 	public List<Book> getBookByTitle(String title) {
