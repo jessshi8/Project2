@@ -1,6 +1,10 @@
-<div class="container">
-    <h1 id="title">Past Orders</h1>
-    <hr class="solid">
+<div *ngIf="sessionUser!=null; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <div class="container">
+        <h1 id="title">Past Orders</h1>
+        <hr class="solid">
+    </div>
+
     <table class="table table-dark table-striped">
         <thead>
             <tr>
@@ -26,12 +30,14 @@
                 <td scope="col">{{book.genre}}</td>
                 <td scope="col">{{book.price}}</td>
                 <td >{{book.summary}}</td>
-                
             </tr>
         </tbody>
     </table>
-</div>
-
+</ng-template>
+<ng-template #elseBlock>
+    <p id="body">Register or login to an existing account.</p>
+</ng-template>
+<div>
 
 <!--     <form [formGroup]="orderGroup">
         <div class="mb-3">

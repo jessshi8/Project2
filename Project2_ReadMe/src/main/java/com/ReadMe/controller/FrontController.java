@@ -208,7 +208,7 @@ public class FrontController {
 		return new ResponseEntity<>("Invalid login", HttpStatus.FORBIDDEN);
 	}
     
-	//POST: localhost:9015/bookstore/users
+	//POST: localhost:9015/bookstore/register
 	//Include user in JSON format in the request body
 	@PostMapping("/register")
 	public ResponseEntity<Object> insertUser(@RequestBody User user){
@@ -230,22 +230,41 @@ public class FrontController {
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
 	}
 	
-	//Update User made by Joey--------------
+	//POST: localhost:9015/bookstore/updateuser
+	//Include user in JSON format in the request body
 	@PostMapping("/updateuser")
+	public ResponseEntity<Object> updateUser(@RequestBody User user) {
+		if(uServ.getUserByUsername(user.getUsername()) == null) {
+			Main.log.warn("Failed to update user with username " + user.getUsername() + ": User of that username does not exist");
+			return new ResponseEntity<>("User of that username does not exist", HttpStatus.FORBIDDEN);
+		}
+		uServ.updateUser(user);
+		Main.log.info("Updated user with username " + user.getUsername());
+		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
+	}
+	
+	//POST: localhost:9015/bookstore/resetpassword
+	//Include user in JSON format in the request body
+	@PostMapping("/resetpassword")
 	public ResponseEntity<Object> resetUser(@RequestBody User user){
 		System.out.println("In resetuser");
 		if(uServ.getUserByUsername(user.getUsername()) != null) {
-			uServ.updatetUser(user);
+			String password = "";
+			for (int i = 0; i < 9; i++) {
+				password += randomCharacter();
+			}
+			String encrypted = sha256(password);
+			user.setPassword(encrypted);
+			uServ.updateUser(user);
 			eServ.sendEmail(user.getEmail(), "ReadMe: Password Updated", 
 					"Thank you for updating your password , " + user.getFirstname() + 
-					".\nYour new password is: " + user.getPassword() + " .");
+					".\nYour new password is: " + password + " .");
 			Main.log.info("Updated user with username " + user.getUsername());
 			return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
 		}
 		Main.log.warn("Failed to update user with username " + user.getUsername() + ": User of that username does not exist");
-		return new ResponseEntity<>("User does not exist!", HttpStatus.FORBIDDEN);
+		return new ResponseEntity<>("User of that username does not exist", HttpStatus.FORBIDDEN);
 	}
-	//--------------------------------
 	
 	private static char randomCharacter() {
 		int rand = (int)(Math.random()*62);
