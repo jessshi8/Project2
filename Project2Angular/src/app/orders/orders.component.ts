@@ -33,32 +33,5 @@ export class OrdersComponent implements OnInit {
         this.user = JSON.parse(this.sessionUser);
         this.orderList = this.user.orders;
       }
-    // this.bookServ.getOrders().subscribe(
-    //   response =>{
-    //     console.log(response);
-    //     this.orderList=response;
-    //   },
-    //   error =>{
-    //     console.warn("there was an error ", error);
-    //   }
-    // )
-    }
-    // public submitBook(book: FormGroup){
-    //   console.log(book);
-    //   let stringBook = JSON.stringify(book.value);
-    //   this.bookServ.insertBook(stringBook).subscribe(
-    //     response => {
-    //       console.log(response);
-    //       this.orderList.push(response);
-    //     },
-    //     error =>{
-    //       console.warn("there was an error ", error);
-    //     }
-    //   )
-    // }
-  
   }
-  
-
-  
-
+}
