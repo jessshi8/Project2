@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Book } from '../book';
+import { CatalogService } from './catalog.service';
 
 @Component({
   selector: 'app-catalog',
@@ -8,41 +10,69 @@ import { Component, OnInit } from '@angular/core';
 export class CatalogComponent implements OnInit {
   public keyword:string|null = null;
   public filter:any;
+  bookList:Book[] = [];
 
-  constructor() { }
+  constructor(private catalogServ:CatalogService) { }
 
   ngOnInit(): void {
     this.keyword = window.sessionStorage.getItem("keyword");
     var sessionFilter = window.sessionStorage.getItem("filter");
     this.filter = sessionFilter?.charAt(sessionFilter.length-2);
 
-    switch(this.filter) {
-      case '1': {
-        console.log("Author");
-        // call function to get book by author
-        break;
-      }
-      case '2': {
-        console.log("Title");
-        // call function to get book by title
-        break;
-      }
-      case '3': {
-        console.log("ISBN");
-        // call function to get book by ISBN
-        break;
-      }
-      case '4': {
-        console.log("Publisher");
-        // call function to get book by publisher
-        break;
-      }
-      case '5': {
-        console.log("Genre");
-        // call function to get book by genre
-        break;
+    if (this.keyword != null) {
+      console.log(this.keyword);
+      switch(this.filter) {
+        case '1': {
+          console.log("Author");
+          this.catalogServ.getBooksByAuthor(this.keyword).subscribe(
+            response=>{
+              console.log(response);
+              this.bookList=response;
+            }
+          );
+          break;
+        }
+        case '2': {
+          console.log("Title");
+          this.catalogServ.getBooksByTitle(this.keyword).subscribe(
+            response=>{
+              console.log(response);
+              this.bookList=response;
+            }
+          );
+          break;
+        }
+        case '3': {
+          console.log("ISBN");
+          this.catalogServ.getBooksByISBN(this.keyword).subscribe(
+            response=>{
+              console.log(response);
+              this.bookList=response;
+            }
+          );
+          break;
+        }
+        case '4': {
+          console.log("Publisher");
+          this.catalogServ.getBooksByPublisher(this.keyword).subscribe(
+            response=>{
+              console.log(response);
+              this.bookList=response;
+            }
+          );
+          break;
+        }
+        case '5': {
+          console.log("Genre");
+          this.catalogServ.getBooksByGenre(this.keyword).subscribe(
+            response=>{
+              console.log(response);
+              this.bookList=response;
+            }
+          );
+          break;
+        }
       }
     }
   }
-
 }

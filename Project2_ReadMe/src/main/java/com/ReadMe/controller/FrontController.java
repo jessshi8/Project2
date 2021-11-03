@@ -54,7 +54,7 @@ public class FrontController {
 		return new ResponseEntity<List<Book>>(bServ.getAllBooks(), HttpStatus.OK);
 	}
 	
-	//GET: localhost:9015/bookstore/isbn/{isbn}
+	//GET: localhost:9015/bookstore/books/isbn/{isbn}
 	@GetMapping("/books/isbn/{isbn}")
 	public ResponseEntity<Book> getBookByIsbn(@PathVariable("isbn") String isbn) {
 		Optional<Book> book = bServ.getBookByIsbn(isbn);
@@ -67,7 +67,7 @@ public class FrontController {
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
 	
-	//GET: localhost:9015/bookstore/title/{title}
+	//GET: localhost:9015/bookstore/books/title/{title}
 	@GetMapping("/books/title/{title}")
 	public ResponseEntity<List<Book>> getBookByTitle(@PathVariable("title") String title) {
 		List<Book> bookList = bServ.getBookByTitle(title);
@@ -80,7 +80,7 @@ public class FrontController {
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
-	//GET: localhost:9015/bookstore/author/{author}
+	//GET: localhost:9015/bookstore/books/author/{author}
 	@GetMapping("/books/author/{author}")
 	public ResponseEntity<List<Book>> getBookByAuthor(@PathVariable("author") String author) {
 		List<Book> bookList = bServ.getBookByAuthor(author);
@@ -93,7 +93,7 @@ public class FrontController {
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
-	//GET: localhost:9015/bookstore/publisher/{publisher}
+	//GET: localhost:9015/bookstore/books/publisher/{publisher}
 	@GetMapping("/books/publisher/{publisher}")
 	public ResponseEntity<List<Book>> getBookByPublisher(@PathVariable("publisher") String publisher) {
 		List<Book> bookList = bServ.getBookByPublisher(publisher);
@@ -106,7 +106,7 @@ public class FrontController {
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
-	//GET: localhost:9015/bookstore/genre/{genre}
+	//GET: localhost:9015/bookstore/books/genre/{genre}
 	@GetMapping("/books/genre/{genre}")
 	public ResponseEntity<List<Book>> getBookByGenre(@PathVariable("genre") String genre) {
 		List<Book> bookList = bServ.getBookByGenre(genre);
@@ -235,7 +235,7 @@ public class FrontController {
 	public ResponseEntity<Object> resetUser(@RequestBody User user){
 		System.out.println("In resetuser");
 		if(uServ.getUserByUsername(user.getUsername()) != null) {
-			uServ.updatetUser(user);
+			uServ.updateUser(user);
 			eServ.sendEmail(user.getEmail(), "ReadMe: Password Updated", 
 					"Thank you for updating your password , " + user.getFirstname() + 
 					".\nYour new password is: " + user.getPassword() + " .");
