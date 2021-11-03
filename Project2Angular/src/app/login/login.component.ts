@@ -9,6 +9,8 @@ import { User } from '../user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loggedIn:boolean = false;
+  submitted:boolean = false;
   userList: User[] = [];
   loginGroup = new FormGroup({
     username: new FormControl(''),
@@ -25,6 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
+    this.loggedIn=false;
+    this.submitted=false;
     /* this.loginService.getAllUsers().subscribe(
       response => {
         this.userList = response;
@@ -33,9 +37,11 @@ export class LoginComponent implements OnInit {
   }
 
   public login(user: FormGroup): void {
+    this.submitted=true;
     let stringUser = JSON.stringify(user.value);
     this.loginService.validateUser(stringUser).subscribe(
       response => {
+        this.loggedIn=true;
         sessionStorage.setItem("currentUser", JSON.stringify(response));
         window.location.href="http://localhost:4200/";
       },

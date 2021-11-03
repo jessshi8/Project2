@@ -1,7 +1,7 @@
 <div class="row">
     <div *ngIf="sessionUser!=null; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock> <h3 id="greeting">Welcome {{user.firstname}}!</h3></ng-template>
-    <ng-template #elseBlock><h3 id="greeting">Welcome!</h3></ng-template>
+    <ng-template #thenBlock><h1 id="greeting">Welcome {{user.firstname}}!</h1></ng-template>
+    <ng-template #elseBlock><h1 id="greeting">Welcome!</h1></ng-template>
 </div>
 <br>
 <div class="row">
@@ -9,7 +9,7 @@
     <div class="col-6">
         <form [formGroup]="filterForm" class="d-flex">
             <select formControlName="filter">
-                <option [ngValue]="null" disabled>Filter by:</option>
+                <option [ngValue]="null" disabled>Filter by</option>
                 <option *ngFor="let filter of filters" [ngValue]="filter.id">{{filter.name}}</option>
             </select>
             <input id="search-bar" class="form-control me-2" type="search" aria-label="Search" 

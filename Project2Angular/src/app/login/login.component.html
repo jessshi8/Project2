@@ -1,6 +1,8 @@
 <div class="container">
     <div class="row">
-        <h2>Login</h2>
+        <h1 id="title">Login</h1>
+        <div *ngIf="!loggedIn && submitted; then thenBlock"></div>
+        <ng-template #thenBlock><p id="message">Invalid username or password. Try again.</p></ng-template>
         <br>
         <form [formGroup]="loginGroup">
             <div class="mb-3">

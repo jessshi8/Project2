@@ -1,3 +1,6 @@
-#asterisk {
+#title, #message {
+	text-align: center;
+}
+#asterisk, #message {
 	color: red;
 }
