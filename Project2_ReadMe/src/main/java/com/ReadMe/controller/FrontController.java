@@ -1,6 +1,5 @@
 package com.ReadMe.controller;
 
-
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,19 +53,20 @@ public class FrontController {
 		return new ResponseEntity<List<Book>>(bServ.getAllBooks(), HttpStatus.OK);
 	}
 	
-	//GET: localhost:9015/bookstore/books/isbn/{isbn}
-	/*
-	 * @GetMapping("/books/isbn/{isbn}") public ResponseEntity<Book>
-	 * getBookByIsbn(@PathVariable("isbn") String isbn) { Optional<Book> book =
-	 * bServ.getBookByIsbn(isbn); if (book.isPresent()) {
-	 * Main.log.info("Retrieved book with ISBN " + isbn + " from database"); return
-	 * new ResponseEntity<Book>(book.get(), HttpStatus.OK); }
-	 * 
-	 * Main.log.warn("Book with ISBN " + isbn + " not found"); return new
-	 * ResponseEntity<>(null, HttpStatus.NOT_FOUND); }
-	 */
+	// GET: localhost:9015/bookstore/books/id/{id}
+	@GetMapping("/books/id/{id}")
+	public ResponseEntity<Book> getBookById(@PathVariable("id") String isbn) {
+		Optional<Book> book = bServ.getBookById(isbn);
+		if (book.isPresent()) {
+			Main.log.info("Retrieved book with ISBN " + isbn + " from database");
+			return new ResponseEntity<Book>(book.get(), HttpStatus.OK);
+		}
+
+		Main.log.warn("Book with ISBN " + isbn + " not found");
+		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+	}
 	
-	//GET: localhost:9015/bookstore/books/title/{title}
+	// GET: localhost:9015/bookstore/books/isbn/{isbn}
 	@GetMapping("/books/isbn/{isbn}")
 	public ResponseEntity<List<Book>> getBookByIsbn(@PathVariable("isbn") String isbn) {
 		List<Book> bookList = bServ.getBookByIsbn(isbn);
@@ -74,12 +74,12 @@ public class FrontController {
 			Main.log.warn("Book with isbn " + isbn + " not found");
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
-		
+
 		Main.log.info("Retrieved books with isbn " + isbn + " from database");
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
-	//GET: localhost:9015/bookstore/books/title/{title}
+	//GET: localhost:9015/bookstore/title/{title}
 	@GetMapping("/books/title/{title}")
 	public ResponseEntity<List<Book>> getBookByTitle(@PathVariable("title") String title) {
 		List<Book> bookList = bServ.getBookByTitle(title);
@@ -92,7 +92,7 @@ public class FrontController {
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
-	//GET: localhost:9015/bookstore/books/author/{author}
+	//GET: localhost:9015/bookstore/author/{author}
 	@GetMapping("/books/author/{author}")
 	public ResponseEntity<List<Book>> getBookByAuthor(@PathVariable("author") String author) {
 		List<Book> bookList = bServ.getBookByAuthor(author);
@@ -105,7 +105,7 @@ public class FrontController {
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
-	//GET: localhost:9015/bookstore/books/publisher/{publisher}
+	//GET: localhost:9015/bookstore/publisher/{publisher}
 	@GetMapping("/books/publisher/{publisher}")
 	public ResponseEntity<List<Book>> getBookByPublisher(@PathVariable("publisher") String publisher) {
 		List<Book> bookList = bServ.getBookByPublisher(publisher);
@@ -118,7 +118,7 @@ public class FrontController {
 		return new ResponseEntity<List<Book>>(bookList, HttpStatus.OK);
 	}
 	
-	//GET: localhost:9015/bookstore/books/genre/{genre}
+	//GET: localhost:9015/bookstore/genre/{genre}
 	@GetMapping("/books/genre/{genre}")
 	public ResponseEntity<List<Book>> getBookByGenre(@PathVariable("genre") String genre) {
 		List<Book> bookList = bServ.getBookByGenre(genre);
@@ -136,12 +136,10 @@ public class FrontController {
 	@PostMapping("/books")
 	public ResponseEntity<Object> insertBook(@RequestBody Book book) {
 		if (bServ.getBookById(book.getIsbn()).isPresent()) {
-			Main.log.warn("Failed to insert book with ISBN " + book.getIsbn()
-					+ ": Book with that ISBN already exists");
-			return new ResponseEntity<>("Book with that ISBN already exists.",
-					HttpStatus.FORBIDDEN);
+			Main.log.warn("Failed to insert book with ISBN " + book.getIsbn() + ": Book with that ISBN already exists");
+			return new ResponseEntity<>("Book with that ISBN already exists.", HttpStatus.FORBIDDEN);
 		}
-
+		
 		bServ.insertBook(book);
 		Main.log.info("Inserted book with ISBN " + book.getIsbn() + " into database");
 		return new ResponseEntity<>(bServ.getBookById(book.getIsbn()).get(), HttpStatus.ACCEPTED);
@@ -156,11 +154,10 @@ public class FrontController {
 			Main.log.info("Deleted book with ISBN " + isbn + " from database");
 			return new ResponseEntity<String>("Book was deleted", HttpStatus.ACCEPTED);
 		}
-
+		
 		Main.log.warn("Failed to delete book with ISBN " + isbn + ": No book with that ISBN");
 		return new ResponseEntity<String>("No book with that ISBN", HttpStatus.NOT_FOUND);
 	}
-	 
 	
 	//GET: localhost:9015/bookstore/users/initial
 	@GetMapping("/users/initial") 
@@ -223,7 +220,7 @@ public class FrontController {
 		return new ResponseEntity<>("Invalid login", HttpStatus.FORBIDDEN);
 	}
     
-	//POST: localhost:9015/bookstore/users
+	//POST: localhost:9015/bookstore/register
 	//Include user in JSON format in the request body
 	@PostMapping("/register")
 	public ResponseEntity<Object> insertUser(@RequestBody User user){
@@ -245,22 +242,41 @@ public class FrontController {
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
 	}
 	
-	//Update User made by Joey--------------
+	//POST: localhost:9015/bookstore/updateuser
+	//Include user in JSON format in the request body
 	@PostMapping("/updateuser")
+	public ResponseEntity<Object> updateUser(@RequestBody User user) {
+		if(uServ.getUserByUsername(user.getUsername()) == null) {
+			Main.log.warn("Failed to update user with username " + user.getUsername() + ": User of that username does not exist");
+			return new ResponseEntity<>("User of that username does not exist", HttpStatus.FORBIDDEN);
+		}
+		uServ.updateUser(user);
+		Main.log.info("Updated user with username " + user.getUsername());
+		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
+	}
+	
+	//POST: localhost:9015/bookstore/resetpassword
+	//Include user in JSON format in the request body
+	@PostMapping("/resetpassword")
 	public ResponseEntity<Object> resetUser(@RequestBody User user){
 		System.out.println("In resetuser");
 		if(uServ.getUserByUsername(user.getUsername()) != null) {
+			String password = "";
+			for (int i = 0; i < 9; i++) {
+				password += randomCharacter();
+			}
+			String encrypted = sha256(password);
+			user.setPassword(encrypted);
 			uServ.updateUser(user);
 			eServ.sendEmail(user.getEmail(), "ReadMe: Password Updated", 
 					"Thank you for updating your password , " + user.getFirstname() + 
-					".\nYour new password is: " + user.getPassword() + " .");
+					".\nYour new password is: " + password + " .");
 			Main.log.info("Updated user with username " + user.getUsername());
 			return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
 		}
 		Main.log.warn("Failed to update user with username " + user.getUsername() + ": User of that username does not exist");
-		return new ResponseEntity<>("User does not exist!", HttpStatus.FORBIDDEN);
+		return new ResponseEntity<>("User of that username does not exist", HttpStatus.FORBIDDEN);
 	}
-	//--------------------------------
 	
 	private static char randomCharacter() {
 		int rand = (int)(Math.random()*62);
