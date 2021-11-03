@@ -26,7 +26,7 @@ public class UserService {
 		
 	}
 	
-	public void updatetUser(User user) {
+	public void updateUser(User user) {
 		uRepo.save(user);
 	}
 	

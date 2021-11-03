@@ -1,0 +1,19 @@
+2021-11-03 11:02:33 INFO  Main:53 - Retrieved all books from database
+2021-11-03 11:02:53 INFO  Main:204 - Login from user with username austen_s
+2021-11-03 11:02:57 INFO  Main:53 - Retrieved all books from database
+2021-11-03 11:17:09 INFO  Main:204 - Login from user with username austen_s
+2021-11-03 11:18:27 INFO  Main:178 - Retrieved user with username austen_s from database
+2021-11-03 11:18:33 INFO  Main:165 - Retrieved all users from database
+2021-11-03 11:21:28 INFO  Main:204 - Login from user with username austen_s
+2021-11-03 11:23:43 INFO  Main:242 - Updated user with username austen_s
+2021-11-03 11:26:05 INFO  Main:249 - Updated user with username austen_s
+2021-11-03 11:26:22 INFO  Main:204 - Login from user with username austen_s
+2021-11-03 11:30:45 INFO  Main:165 - Retrieved all users from database
+2021-11-03 11:32:07 INFO  Main:242 - Updated user with username austen_s
+2021-11-03 11:32:56 INFO  Main:204 - Login from user with username austen_s
+2021-11-03 11:38:19 INFO  Main:204 - Login from user with username austen_s
+2021-11-03 11:55:39 INFO  Main:204 - Login from user with username austen_s
+2021-11-03 11:57:32 INFO  Main:204 - Login from user with username user4
+2021-11-03 11:58:21 INFO  Main:204 - Login from user with username user4
+2021-11-03 12:02:47 INFO  Main:204 - Login from user with username user4
+2021-11-03 12:03:05 INFO  Main:204 - Login from user with username austen_s

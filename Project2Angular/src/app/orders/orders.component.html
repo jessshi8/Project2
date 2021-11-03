@@ -1,36 +1,41 @@
-<div class="container">
-    <h1 id="title">Past Orders</h1>
-    <hr class="solid">
-</div>
-<table class="table table-dark table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Book Isbn</th>
-            <th scope="col">Book Cover</th>
-            <th scope="col">Book Title</th>
-            <th scope="col">Book Author </th>
-            <th scope="col">Book Publisher</th>
-            <th scope="col">Book Published</th>
-            <th scope="col">Book Genre</th>
-            <th scope="col">Book Price </th>
-            <th scope="col">Book Summary </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let book of  orderList">
-            <td scope="col">{{book.isbn}}</td> 
-            <td scope="col">{{book.book_cover}}</td>
-            <td scope="col">{{book.title}}</td>
-            <td scope="col">{{book.author}}</td>
-            <td scope="col">{{book.publisher}}</td>
-            <td scope="col">{{book.published}}</td>
-            <td scope="col">{{book.genre}}</td>
-            <td scope="col">{{book.price}}</td>
-            <td >{{book.summary}}</td>
-            
-        </tr>
-    </tbody>
-</table>
+<div *ngIf="sessionUser!=null; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <div class="container">
+        <h1 id="title">Past Orders</h1>
+        <hr class="solid">
+    </div>
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Book Isbn</th>
+                <th scope="col">Book Cover</th>
+                <th scope="col">Book Title</th>
+                <th scope="col">Book Author </th>
+                <th scope="col">Book Publisher</th>
+                <th scope="col">Book Published</th>
+                <th scope="col">Book Genre</th>
+                <th scope="col">Book Price </th>
+                <th scope="col">Book Summary </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of  orderList">
+                <td scope="col">{{book.isbn}}</td> 
+                <td scope="col">{{book.book_cover}}</td>
+                <td scope="col">{{book.title}}</td>
+                <td scope="col">{{book.author}}</td>
+                <td scope="col">{{book.publisher}}</td>
+                <td scope="col">{{book.published}}</td>
+                <td scope="col">{{book.genre}}</td>
+                <td scope="col">{{book.price}}</td>
+                <td >{{book.summary}}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
+<ng-template #elseBlock>
+    <p id="body">Register or login to an existing account.</p>
+</ng-template>
 <div>
 <!--     <form [formGroup]="orderGroup">
         <div class="mb-3">
