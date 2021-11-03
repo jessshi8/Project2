@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <h1 id="title">Login</h1>
+        <div *ngIf="!loggedIn && submitted; then thenBlock"></div>
+        <ng-template #thenBlock><p id="message">Invalid username or password. Try again.</p></ng-template>
+        <br>
+        <form [formGroup]="loginGroup">
+            <div class="mb-3">
+                <label class="form-label" id="login-label"><b>Username: </b></label> 
+                <label id="asterisk">* </label>
+                <input type="text" class="form-control" formControlName="username" placeholder="Enter username" required> 
+                <br>
+                <label class="form-label"><b>Password: </b></label>
+                <label id="asterisk">* </label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Enter password" required>
+                <br>
+                <label id="asterisk">* </label>
+                <label id="required-text"><small>Required</small></label>
+                <br><br>
+                <button type="submit" class="btn btn-danger" (click)="login(loginGroup)">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

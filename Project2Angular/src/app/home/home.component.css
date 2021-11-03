@@ -1,0 +1,12 @@
+#greeting {
+    text-align: center;
+}
+
+#search-bar {
+    margin-left: 5px;
+    width: 100%;
+}
+
+#search-btn {
+    width: 10%;
+}

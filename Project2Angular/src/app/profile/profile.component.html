@@ -1,0 +1,20 @@
+<div class="row">
+  <h1 id="title">User Profile</h1>
+  <hr class="solid">
+  <div *ngIf="sessionUser!=null; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+    <div class="col-8">
+      <h4>Information:</h4>
+      <p>First name: {{user.firstname}}</p>
+      <p>Last name: {{user.lastname}}</p>
+      <p>Email: {{user.email}}</p>
+    </div>
+    <div class="col-4">
+      <h4>Reset your password:</h4>
+      <button>Reset Password</button>
+    </div>
+  </ng-template>
+  <ng-template #elseBlock>
+    <p id="body">Register or login to an existing account.</p>
+  </ng-template>
+</div>

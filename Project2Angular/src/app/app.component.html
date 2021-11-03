@@ -1,0 +1,47 @@
+<header>
+  <a routerLink="" href="http://localhost:4200/"><img src="./assets/logo.jpg" width="252" height="185"></a>
+</header>
+<div class="container">
+<!-- Navigation Bar (redone using boostrap) -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">ReadMe.com</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/register">Register Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/profile">User Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/bookmarks">Bookmarks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/orders">Past Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="/cart">Shopping Cart</a>
+        </li>
+      </ul>
+      <div class="navbar-nav navbar-left">
+        <li class="nav-item" id="login">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item" id="logout">
+          <a class="nav-link" href="http://localhost:4200/" (click)="logout()">Logout</a>
+        </li>
+      </div>
+    </div>
+  </div>
+</nav>
+<br>
+<router-outlet></router-outlet>
+</div>
+<br>
+<footer>
+  <p>Copyright &copy; ReadMe 2021</p>
+</footer>
