@@ -20,23 +20,22 @@ export class CatalogComponent implements OnInit {
     this.filter = sessionFilter?.charAt(sessionFilter.length-2);
 
     if (this.keyword != null) {
-      console.log(this.keyword);
+      var word = JSON.parse(this.keyword);
       switch(this.filter) {
         case '1': {
           console.log("Author");
-          this.catalogServ.getBooksByAuthor(this.keyword).subscribe(
+          this.catalogServ.getBooksByAuthor(word).subscribe(
             response=>{
-              console.log(response);
               this.bookList=response;
+              console.log(this.bookList);
             }
           );
           break;
         }
         case '2': {
           console.log("Title");
-          this.catalogServ.getBooksByTitle(this.keyword).subscribe(
+          this.catalogServ.getBooksByTitle(word).subscribe(
             response=>{
-              console.log(response);
               this.bookList=response;
             }
           );
@@ -44,19 +43,18 @@ export class CatalogComponent implements OnInit {
         }
         case '3': {
           console.log("ISBN");
-          this.catalogServ.getBooksByISBN(this.keyword).subscribe(
+          this.catalogServ.getBooksByISBN(word).subscribe(
             response=>{
-              console.log(response);
               this.bookList=response;
+              console.log(this.bookList);
             }
           );
           break;
         }
         case '4': {
           console.log("Publisher");
-          this.catalogServ.getBooksByPublisher(this.keyword).subscribe(
+          this.catalogServ.getBooksByPublisher(word).subscribe(
             response=>{
-              console.log(response);
               this.bookList=response;
             }
           );
@@ -64,9 +62,8 @@ export class CatalogComponent implements OnInit {
         }
         case '5': {
           console.log("Genre");
-          this.catalogServ.getBooksByGenre(this.keyword).subscribe(
+          this.catalogServ.getBooksByGenre(word).subscribe(
             response=>{
-              console.log(response);
               this.bookList=response;
             }
           );

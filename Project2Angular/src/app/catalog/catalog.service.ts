@@ -12,6 +12,7 @@ export class CatalogService {
   
   public getBooksByAuthor(keyword:string): Observable<Book[]>{
     var url="http://localhost:9015/bookstore/books/author/" + keyword;
+    console.log(url);
     const httpHead = {
       headers: new HttpHeaders({
         'Content-Type':'application/json',
