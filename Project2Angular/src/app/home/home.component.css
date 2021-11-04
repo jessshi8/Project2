@@ -1,5 +1,5 @@
 .container {
-    width: 600px;
+    width: 800px;
 	margin: 100px auto 350px;
 	padding: 40px;
 	background: #EAE6E5;
@@ -11,7 +11,7 @@
 }
 
 #dropdown {
-    border: 1px solid;
+    border: 1px solid #536f87;
     border-radius: 4px;
     color: #536f87;
 }
