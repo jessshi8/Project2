@@ -272,6 +272,7 @@ public class FrontController {
 	
 	@GetMapping("/sha256/{password}")
 	public ResponseEntity<Object> updatePassword(@PathVariable("password") String pword) {
+		
 		return new ResponseEntity<>(sha256(pword), HttpStatus.OK);
 	}
 	
