@@ -8,8 +8,11 @@
 #title {
     text-align: center;
 }
-#asterisk, #info-text {
+#asterisk {
 	color: red;
+}
+#info-text {
+    color: lightcoral;
 }
 .btn-container {
 	display: flex;  
