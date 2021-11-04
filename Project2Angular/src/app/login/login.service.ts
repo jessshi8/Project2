@@ -7,28 +7,39 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class LoginService {
-  private urlBase = "http://localhost:9015/bookstore/login";
 
   constructor(private http: HttpClient) {}
 
-  /* public getAllUsers(): Observable<User[]>{
+  public getAllUsers(): Observable<User[]>{
+    var url="http://localhost:9015/bookstore/users"
     const httpHead = {
       headers: new HttpHeaders({
         'Content-Type':'application/json',
         'Access-Control-Allow-Origin':'*'
       })
     };
-    return this.http.get<User[]>(this.urlBase, httpHead);
-  } */
-
-  public validateUser(user:string): Observable<User[]> {
-    const httpHead = {
-      headers: new HttpHeaders({
-        'Content-Type':'application/json',
-        'Access-Control-Allow-Origin':'*'
-      })
-    };
-    return this.http.post<User[]>(this.urlBase, user, httpHead);
+    return this.http.get<User[]>(url, httpHead);
   }
 
+  public validateUser(user:string): Observable<User[]> {
+    var url = "http://localhost:9015/bookstore/login";
+    const httpHead = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Origin':'*'
+      })
+    };
+    return this.http.post<User[]>(url, user, httpHead);
+  }
+
+  public resetPassword(user:string): Observable<User[]> {
+    var url="http://localhost:9015/bookstore/resetpassword";
+    const httpHead = {
+      headers: new HttpHeaders({
+        'Content-Type':'application/json',
+        'Access-Control-Allow-Origin':'*'
+      })
+    };
+    return this.http.post<User[]>(url, user, httpHead);
+  }
 }

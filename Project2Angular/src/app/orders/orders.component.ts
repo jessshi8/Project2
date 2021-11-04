@@ -25,7 +25,7 @@ export class OrdersComponent implements OnInit {
   });
 
   
-  constructor(private bookServ:OrdersService) { }
+  constructor() { }
 
   ngOnInit(): void {
       this.sessionUser = window.sessionStorage.getItem("currentUser");
