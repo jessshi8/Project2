@@ -1,8 +1,6 @@
 <div class="profile-container">
-  <div class="row">
-    <h2 id="title">User Profile</h2>
-    <hr class="solid">
-  </div>
+  <h2 id="title">User Profile</h2>
+  <hr class="solid">
 
   <div *ngIf="sessionUser==null; then notLoggedInBlock else loggedInBlock"></div>
   <!-- Not Logged In View -->
