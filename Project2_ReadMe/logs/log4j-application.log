@@ -1,0 +1,3 @@
+2021-11-03 15:49:18 INFO  Main:190 - Retrieved user with username joeytest from database
+2021-11-03 15:49:28 INFO  Main:254 - Updated user with username joeytest
+2021-11-03 16:16:38 INFO  Main:177 - Retrieved all users from database
