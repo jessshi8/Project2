@@ -32,8 +32,8 @@ export class HomeComponent implements OnInit {
   }
 
   searchBooks(keyword : string) {
-    console.log('Searched for', keyword);
+    sessionStorage.setItem("keyword", JSON.stringify(keyword));
+    sessionStorage.setItem("filter", JSON.stringify(this.filterForm.value));
     this.router.navigateByUrl('/search/'+keyword);
-    console.log(this.filterForm.value);
   }
 }

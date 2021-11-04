@@ -22,7 +22,9 @@
             <label id="asterisk">* </label> 
             <label id="required-text"><small>Required</small></label>
             <br><br>
-            <button type="submit" class="btn btn-danger" (click)="submitUser(registerGroup)">Register</button>
+            <div class="btn-container">
+                <button id="register-btn" type="submit" (click)="submitUser(registerGroup)">Register</button>
+            </div>
         </div>
     </form>
 </div>

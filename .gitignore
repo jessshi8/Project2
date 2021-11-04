@@ -1,0 +1,4 @@
+# Logging info
+*.log
+# Node Modules from Angular application
+Project2Angular/node_modules/
