@@ -7,15 +7,12 @@ p{
 label{
     color: aliceblue;
 }
-h1{
-    color: aliceblue;
-}
-h2{
-    color: aliceblue;
-}
-h3{
-    color: aliceblue;
-}
-h4{
-    color: aliceblue;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ color: aliceblue;
 }
