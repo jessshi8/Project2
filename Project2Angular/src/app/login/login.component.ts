@@ -9,9 +9,14 @@ import { User } from '../user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loggedIn:boolean = false;
+  loggedIn:boolean = true;
   submitted:boolean = false;
+  forgot:boolean = false;
+  found:boolean = true;
+  success:boolean = false;
+
   userList: User[] = [];
+
   loginGroup = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -24,30 +29,62 @@ export class LoginComponent implements OnInit {
     bookmarks: new FormControl([])
   });
 
+  emailGroup = new FormGroup({
+    username: new FormControl('')
+  })
+
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.loggedIn=false;
+    this.loggedIn=true;
     this.submitted=false;
-    /* this.loginService.getAllUsers().subscribe(
-      response => {
-        this.userList = response;
-      }
-    ) */
+    this.forgot=false;
+    this.found=true;
+    this.success=false;
   }
 
   public login(user: FormGroup): void {
     this.submitted=true;
     let stringUser = JSON.stringify(user.value);
     this.loginService.validateUser(stringUser).subscribe(
-      response => {
+      response => { 
         this.loggedIn=true;
         sessionStorage.setItem("currentUser", JSON.stringify(response));
         window.location.href="http://localhost:4200/";
       },
       error => {
+        this.loggedIn=false;
         console.warn("This error occurred: " + error);
       }
+    );
+  }
+
+  forgotPassword() {
+    this.forgot = true;
+    this.loginService.getAllUsers().subscribe(
+      response => {
+        this.userList=response;
+        console.log(this.userList);
+      }
     )
+  }
+
+  reset(input: FormGroup): void {
+    this.found=false;
+    let username = input.value.username;
+    for (let user of this.userList) {
+      if (user.username == username) {
+        this.found = true;
+        let stringUser = JSON.stringify(user);
+        this.loginService.resetPassword(stringUser).subscribe(
+          response => {
+            this.success = true;
+          },
+          error => {
+            console.warn("This error occurred: " + error);
+          }
+        )
+      }
+    }
   }
 }

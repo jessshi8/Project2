@@ -291,8 +291,7 @@ public class FrontController {
 			user.setPassword(encrypted);
 			uServ.updateUser(user);
 			eServ.sendEmail(user.getEmail(), "ReadMe: Password Updated", 
-					"Thank you for updating your password , " + user.getFirstname() + 
-					".\nYour new password is: " + password + " .");
+					user.getFirstname() + ", your password has been reset to: " + password);
 			Main.log.info("Updated user with username " + user.getUsername());
 			return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
 		}
