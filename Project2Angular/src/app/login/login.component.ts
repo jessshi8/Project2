@@ -64,7 +64,6 @@ export class LoginComponent implements OnInit {
     this.loginService.getAllUsers().subscribe(
       response => {
         this.userList=response;
-        console.log(this.userList);
       }
     )
   }

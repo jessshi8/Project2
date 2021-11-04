@@ -281,7 +281,6 @@ public class FrontController {
 	//Include user in JSON format in the request body
 	@PostMapping("/resetpassword")
 	public ResponseEntity<Object> resetUser(@RequestBody User user){
-		System.out.println("In resetuser");
 		if(uServ.getUserByUsername(user.getUsername()) != null) {
 			String password = "";
 			for (int i = 0; i < 9; i++) {
