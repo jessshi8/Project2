@@ -255,6 +255,29 @@ public class FrontController {
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
 	}
 	
+	//-----------------Joey
+	@PostMapping("/updatepassword")
+	public ResponseEntity<Object> updatePassword(@RequestBody User user) {
+		if(uServ.getUserByUsername(user.getUsername()) == null) {
+			Main.log.warn("Failed to update user with username " + user.getUsername() + ": User of that username does not exist");
+			return new ResponseEntity<>("User of that username does not exist", HttpStatus.FORBIDDEN);
+		}
+		String password=user.getPassword();
+		String encrypted = sha256(password);
+		user.setPassword(encrypted);
+		uServ.updateUser(user);
+		Main.log.info("Password changed with username " + user.getUsername());
+		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/sha256/{password}")
+	public ResponseEntity<Object> updatePassword(@PathVariable("password") String pword) {
+		
+		return new ResponseEntity<>(sha256(pword), HttpStatus.OK);
+	}
+	
+	//------------
+	
 	//POST: localhost:9015/bookstore/resetpassword
 	//Include user in JSON format in the request body
 	@PostMapping("/resetpassword")
@@ -276,6 +299,8 @@ public class FrontController {
 		Main.log.warn("Failed to update user with username " + user.getUsername() + ": User of that username does not exist");
 		return new ResponseEntity<>("User of that username does not exist", HttpStatus.FORBIDDEN);
 	}
+	
+	
 	
 	private static char randomCharacter() {
 		int rand = (int)(Math.random()*62);
