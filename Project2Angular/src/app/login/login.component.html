@@ -36,6 +36,7 @@
 <div class="login-container">
     <div class="row">
         <h2 id="title">Login</h2>
+        <hr class="solid">
         <br>
         <div id="login-alert" *ngIf="submitted && !loggedIn; then invalidBlock"></div>
         <ng-template #invalidBlock>
@@ -43,7 +44,7 @@
                 <p id="title">Invalid login. Try again.</p>
             </div>
         </ng-template>
-        <br><br>
+        <br>
         <div id="form">
             <form [formGroup]="loginGroup">
                 <label class="form-label" id="login-label"><b>Username: </b></label> 
