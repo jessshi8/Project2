@@ -1,7 +1,11 @@
+.profile-container {
+    width: 1000px;
+    height: 600px;
+	margin: 0 auto 50px;
+	padding: 40px;
+	background: #EAE6E5;
+	border-radius: 30px;
+}
 #title, #body {
     text-align: center;
-}
-
-.container {
-    color: aliceblue;
 }

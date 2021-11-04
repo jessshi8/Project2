@@ -7,3 +7,13 @@ footer {
     position: absolute;
     text-align: center;
 }
+nav {
+    background-color: #383331;
+}
+#logo {
+    background-color: #383331;
+}
+#highlight {
+    background-color: #383331;
+    color: #EAE6E5;
+}
