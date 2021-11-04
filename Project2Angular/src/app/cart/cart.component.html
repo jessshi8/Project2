@@ -1,4 +1,39 @@
-<div class="container">
-    <h1 id="title">Shopping Cart</h1>
+<div class="cart-container">
+    <h2 id="title">Shopping Cart</h2>
     <hr class="solid">
+
+    <div *ngIf="sessionUser!=null; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Cover</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Publisher</th>
+                    <th scope="col">Published</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Price </th>
+                    <th scope="col">Summary </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of  cartList">
+                    <td scope="col">{{book.isbn}}</td>
+                    <td scope="col">{{book.book_cover}}</td>
+                    <td scope="col">{{book.title}}</td>
+                    <td scope="col">{{book.author}}</td>
+                    <td scope="col">{{book.publisher}}</td>
+                    <td scope="col">{{book.published}}</td>
+                    <td scope="col">{{book.genre}}</td>
+                    <td scope="col">{{book.price}}</td>
+                    <td>{{book.summary}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-template>
+    <ng-template #elseBlock>
+        <p id="body">Register or login to an existing account.</p>
+    </ng-template>
 </div>

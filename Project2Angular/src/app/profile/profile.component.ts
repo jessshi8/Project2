@@ -10,7 +10,8 @@ import { ProfileService } from './profile.service';
 })
 export class ProfileComponent implements OnInit {
   public sessionUser:string|null = null;
-  public user: User = new User("","","","","","",[],[],[]);
+  public user:any=null;
+  // public user: User = new User("","","","","","",[],[],[]);
   public errorMessage:string ="error message";
   public successMessage:string ="success message";
   public passuser:User | undefined;
@@ -24,16 +25,17 @@ export class ProfileComponent implements OnInit {
   constructor(private profileServ:ProfileService) { }
 
   ngOnInit(): void {
-    this.profileServ.getAUser().subscribe(
-      response =>{
-        console.log(response);
-        this.user=response;
-      }
-    )
-    // this.sessionUser = window.sessionStorage.getItem("currentUser");
-    // if (this.sessionUser != null) {
-    //   this.user = JSON.parse(this.sessionUser);
-    // }
+    // Gets the current session's user
+    this.sessionUser = window.sessionStorage.getItem("currentUser");
+    if (this.sessionUser != null) {
+      this.user = JSON.parse(this.sessionUser);
+    }
+    // this.profileServ.getAUser().subscribe(
+    //   response =>{
+    //     console.log(response);
+    //     this.user=response;
+    //   }
+    // )
   }
 
   public submitPassword(passwords: FormGroup){
