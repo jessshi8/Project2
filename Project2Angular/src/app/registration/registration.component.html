@@ -1,5 +1,12 @@
 <div class="container">
     <h2 id="title">Registration</h2>
+    <hr class="solid">
+    <div *ngIf="!valid; then invalidBlock"></div>
+    <ng-template #invalidBlock>
+        <div class="alert alert-danger" role="alert">
+            <p id="title">Invalid input. Try again.</p>
+        </div>
+    </ng-template>
     <br>
     <form [formGroup]="registerGroup">
         <div class="mb-3">
