@@ -10,3 +10,15 @@
         
     </ng-template> -->
 </div>
+
+<div class="container" *ngFor="let book of bookList">
+    <h3>
+        <a
+        [title]="book.title  + ' details'" 
+        [routerLink]="['/book', book.isbn]">
+        {{book.title}}
+        </a>
+    </h3>
+
+
+</div>

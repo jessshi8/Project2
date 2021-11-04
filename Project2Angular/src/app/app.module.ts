@@ -13,6 +13,7 @@ import { CartComponent } from './cart/cart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
 import { HomeComponent } from './home/home.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'search/:keyword', component: CatalogComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'orders', component: OrdersComponent},
-  {path: 'search/:keyword', component: CatalogComponent}
+  {path: 'search/:keyword', component: CatalogComponent},
+  {path: 'book/:bookIsbn', component: BookDetailsComponent},
 ];
 
 @NgModule({
@@ -39,7 +41,8 @@ const routes: Routes = [
     ProfileComponent,
     OrdersComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    BookDetailsComponent
 
   ],
   imports: [
