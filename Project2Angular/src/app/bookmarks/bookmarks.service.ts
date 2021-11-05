@@ -6,12 +6,12 @@ import { User } from '../user';
 @Injectable({
   providedIn: 'root'
 })
-export class BookDetailsService {
+export class BookmarksService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http:HttpClient) { }
 
-  public addBook(user:string): Observable<User[]> {
-    var url = "http://localhost:9015/bookstore/add";
+  public updateUser(user:string): Observable<User[]> {
+    var url="http://localhost:9015/bookstore/update";
     const httpHead = {
       headers: new HttpHeaders({
         'Content-Type':'application/json',

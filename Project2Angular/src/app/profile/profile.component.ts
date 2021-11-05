@@ -10,7 +10,6 @@ import { sha256 } from 'js-sha256';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  
   public sessionUser:string|null = "";
   public user:any=null;
   // public user: User = new User("","","","","","",[],[],[]);
@@ -66,7 +65,5 @@ export class ProfileComponent implements OnInit {
       this.errorMessage ="Current password incorrect number of characters";
       this.successMessage ="";
     }
-   
   }
-
 }
