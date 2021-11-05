@@ -250,8 +250,8 @@ public class FrontController {
 		user.setPassword(encrypted);
 		uServ.insertUser(user);
 		eServ.sendEmail(user.getEmail(), "ReadMe: Temporary Password", 
-				"Thank you for registering an account, " + user.getFirstname() + 
-				".\nYour temporary password is: " + password + ".\nYou may reset your password after logging in.");
+				"Thank you for registering an account, " + user.getUsername() + 
+				".\nYour temporary password is: " + password + ".\nYou may change your password after logging in.");
 		Main.log.info("Inserted user with username " + user.getUsername() + " into database");
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
 	}
@@ -270,24 +270,28 @@ public class FrontController {
 	}
 	
 	//-----------------Joey
+	//POST: localhost:9015/bookstore/updatepassword
+	//Include user in JSON format in the request body with password changed
 	@PostMapping("/updatepassword")
 	public ResponseEntity<Object> updatePassword(@RequestBody User user) {
-		if(uServ.getUserByUsername(user.getUsername()) == null) {
-			Main.log.warn("Failed to update user with username " + user.getUsername() + ": User of that username does not exist");
-			return new ResponseEntity<>("User of that username does not exist", HttpStatus.FORBIDDEN);
-		}
-		String password=user.getPassword();
-		String encrypted = sha256(password);
-		user.setPassword(encrypted);
-		uServ.updateUser(user);
-		Main.log.info("Password changed with username " + user.getUsername());
-		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
+
+		eServ.sendEmail(user.getEmail(), "ReadMe: Password changed", 
+				"Password has been changed for user: " + user.getUsername() + 
+				".\nYour new password is: " + user.getPassword() + ".\nYou may change your password after logging in.");
+		Main.log.info("Inserted user with username " + user.getUsername() + " into database");
+		user.setPassword(sha256(user.getPassword()));
+		uServ.insertUser(user);
+		Main.log.info("Password changed for username: " +user.getUsername());
+		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
 	}
 	
+	//GET: localhost:9015/bookstore/sha256/{password}
 	@GetMapping("/sha256/{password}")
 	public ResponseEntity<Object> updatePassword(@PathVariable("password") String pword) {
+		pword="{ \"value\": "+sha256(pword)+" }";
+	
 		
-		return new ResponseEntity<>(sha256(pword), HttpStatus.OK);
+		return new ResponseEntity<Object>(pword, HttpStatus.OK);
 	}
 	
 	//------------
