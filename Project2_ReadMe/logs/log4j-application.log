@@ -15,3 +15,15 @@
 2021-11-05 04:26:51 INFO  Main:27 - Mail sent successfully
 2021-11-05 04:26:51 INFO  Main:267 - Inserted user with username joeytemp10 into database
 2021-11-05 04:26:52 INFO  Main:270 - Password changed for username: joeytemp10
+2021-11-05 04:28:05 INFO  Main:216 - Login from user with username joeytemp10
+2021-11-05 04:33:42 INFO  Main:230 - Login from user with username joeytemp10
+2021-11-05 04:39:32 INFO  Main:27 - Mail sent successfully
+2021-11-05 04:39:32 INFO  Main:281 - Inserted user with username joeytemp10 into database
+2021-11-05 04:39:33 INFO  Main:284 - Password changed for username: joeytemp10
+2021-11-05 04:39:54 INFO  Main:27 - Mail sent successfully
+2021-11-05 04:39:54 INFO  Main:281 - Inserted user with username joeytemp10 into database
+2021-11-05 04:39:54 INFO  Main:284 - Password changed for username: joeytemp10
+2021-11-05 04:41:28 INFO  Main:27 - Mail sent successfully
+2021-11-05 04:41:28 INFO  Main:281 - Inserted user with username joeytemp10 into database
+2021-11-05 04:41:29 INFO  Main:284 - Password changed for username: joeytemp10
+2021-11-05 04:52:01 INFO  Main:230 - Login from user with username joeytemp10
