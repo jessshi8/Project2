@@ -4,11 +4,10 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,6 +25,9 @@ import com.ReadMe.model.User;
 import com.ReadMe.service.BookService;
 import com.ReadMe.service.EmailSenderService;
 import com.ReadMe.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.NoArgsConstructor;
 
@@ -158,6 +160,18 @@ public class FrontController {
 		Main.log.warn("Failed to delete book with ISBN " + isbn + ": No book with that ISBN");
 		return new ResponseEntity<String>("No book with that ISBN", HttpStatus.NOT_FOUND);
 	}
+	
+	
+	/// POST: localhost:9015/bookstore/add
+	// Works for add to cart and add to bookmarks
+	@PostMapping("/add")
+	public ResponseEntity<Object> addBook(@RequestBody User user){
+		uServ.updateUser(user);
+		Main.log.info("Added book to cart of user with username " + user.getUsername());
+		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
+	}
+	
+	//-------------------------------------------------------
 	
 	//GET: localhost:9015/bookstore/users/initial
 	@GetMapping("/users/initial") 
