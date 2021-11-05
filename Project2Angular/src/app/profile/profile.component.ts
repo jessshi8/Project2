@@ -12,7 +12,6 @@ import { sha256 } from 'js-sha256';
 export class ProfileComponent implements OnInit {
   public sessionUser:string|null = "";
   public user:any=null;
-  // public user: User = new User("","","","","","",[],[],[]);
   public errorMessage:string ="";
   public successMessage:string ="";
   public passuser:User | undefined;
@@ -44,7 +43,7 @@ export class ProfileComponent implements OnInit {
           let stringuser=JSON.stringify(user1);
               this.profileServ.updatePassword(stringuser).subscribe(
                 response => {
-                  console.log(response);
+                  window.sessionStorage.setItem("currentUser", JSON.stringify(response));
                 },
                 error =>{
                   console.warn("there was an error ", error);

@@ -7,13 +7,13 @@
     </ng-template>
     <ng-template #notEmptyBlock>
         <div class="container" *ngFor="let book of bookList">
-            <h3>
+            <h5 id="book">
                 <a
                 [title]="book.title  + ' Details'" 
                 [routerLink]="['/book', book.isbn]">
-                {{book.title}}
+                "{{book.title}}" by {{book.author}}
                 </a>
-            </h3>
+            </h5>
         </div>
     </ng-template>
 </div>
