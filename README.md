@@ -16,3 +16,4 @@
   * Login, Register, Book Catalog, Shopping Cart, Checkout, User Profile
   * Logout
 testing connexion with Jinkins
+2nd test
