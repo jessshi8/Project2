@@ -269,7 +269,7 @@ public class FrontController {
 			user.setPassword(encrypted);
 			uServ.updateUser(user);
 			eServ.sendEmail(user.getEmail(), "ReadMe: Password Updated", 
-					user.getFirstname() + ", your password has been reset to: " + password);
+					user.getFirstname() + ", your password has been reset to: " + password + "\nYou may change your password after logging in.");
 			Main.log.info("Updated user with username " + user.getUsername());
 			return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
 		}
@@ -284,7 +284,7 @@ public class FrontController {
 	@PostMapping("/add")
 	public ResponseEntity<Object> addBook(@RequestBody User user) {
 		uServ.updateUser(user);
-		Main.log.info("Added book to cart of user with username " + user.getUsername() + "\nYou may change your password after logging in.");
+		Main.log.info("Added book to cart of user with username " + user.getUsername());
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()),
 				HttpStatus.CREATED);
 	}
