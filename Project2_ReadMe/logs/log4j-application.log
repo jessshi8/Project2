@@ -42,3 +42,55 @@
 2021-11-05 14:40:33 INFO  Main:163 - Retrieved all users from database
 2021-11-05 14:40:42 INFO  Main:27 - Mail sent successfully
 2021-11-05 14:40:42 INFO  Main:273 - Updated user with username jessshi8
+2021-11-05 14:48:21 INFO  Main:163 - Retrieved all users from database
+2021-11-05 14:48:27 INFO  Main:27 - Mail sent successfully
+2021-11-05 14:48:27 INFO  Main:273 - Updated user with username jessshi8
+2021-11-05 14:48:45 INFO  Main:202 - Login from user with username jessshi8
+2021-11-05 14:49:23 INFO  Main:27 - Mail sent successfully
+2021-11-05 14:49:23 INFO  Main:252 - Inserted user with username jessshi8 into database
+2021-11-05 14:49:24 INFO  Main:255 - Password changed for username: jessshi8
+2021-11-05 14:50:33 INFO  Main:87 - Retrieved books with title Furia from database
+2021-11-05 14:50:35 INFO  Main:74 - Retrieved books with isbn 9781643751207 from database
+2021-11-05 14:50:38 INFO  Main:287 - Added book to cart of user with username jessshi8
+2021-11-05 14:56:12 INFO  Main:126 - Retrieved books with genre Literature Fiction from database
+2021-11-05 14:56:18 INFO  Main:74 - Retrieved books with isbn 9780375897429 from database
+2021-11-05 14:56:48 INFO  Main:126 - Retrieved books with genre Literature Fiction from database
+2021-11-05 14:56:51 INFO  Main:74 - Retrieved books with isbn 9780062662859 from database
+2021-11-05 14:57:03 INFO  Main:126 - Retrieved books with genre Literature Fiction from database
+2021-11-05 14:57:04 INFO  Main:74 - Retrieved books with isbn 9780062882783 from database
+2021-11-05 15:53:36 INFO  Main:126 - Retrieved books with genre Poetry from database
+2021-11-05 15:53:38 INFO  Main:74 - Retrieved books with isbn 9780547807478 from database
+2021-11-05 15:59:04 INFO  Main:74 - Retrieved books with isbn 9780547807478 from database
+2021-11-05 16:00:26 INFO  Main:74 - Retrieved books with isbn 9780547807478 from database
+2021-11-05 16:01:32 INFO  Main:74 - Retrieved books with isbn 9780547807478 from database
+2021-11-05 16:04:21 INFO  Main:126 - Retrieved books with genre Fantasy from database
+2021-11-05 16:04:23 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-05 16:04:38 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-05 16:04:45 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-05 16:04:51 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-05 16:04:58 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-05 16:05:15 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-05 16:05:30 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-05 16:05:45 INFO  Main:126 - Retrieved books with genre Fantasy from database
+2021-11-05 16:05:46 INFO  Main:74 - Retrieved books with isbn 9780747546245 from database
+2021-11-05 16:06:01 INFO  Main:100 - Retrieved books with author Stephen King from database
+2021-11-05 16:06:17 INFO  Main:74 - Retrieved books with isbn 9781501180996 from database
+2021-11-05 16:08:19 INFO  Main:74 - Retrieved books with isbn 9781501180996 from database
+2021-11-05 16:08:30 INFO  Main:74 - Retrieved books with isbn 9781501180996 from database
+2021-11-05 16:08:34 INFO  Main:100 - Retrieved books with author Stephen King from database
+2021-11-05 16:08:39 INFO  Main:126 - Retrieved books with genre Fiction from database
+2021-11-05 16:08:41 INFO  Main:74 - Retrieved books with isbn 9780062447609 from database
+2021-11-05 16:08:52 INFO  Main:126 - Retrieved books with genre Fiction from database
+2021-11-05 16:08:53 INFO  Main:74 - Retrieved books with isbn 9781467761796 from database
+2021-11-05 16:09:58 INFO  Main:74 - Retrieved books with isbn 9781467761796 from database
+2021-11-05 16:10:10 INFO  Main:74 - Retrieved books with isbn 9781467761796 from database
+2021-11-05 16:10:26 INFO  Main:74 - Retrieved books with isbn 9781467761796 from database
+2021-11-05 16:10:29 INFO  Main:74 - Retrieved books with isbn 9781467761796 from database
+2021-11-05 16:10:33 INFO  Main:74 - Retrieved books with isbn 9781467761796 from database
+2021-11-05 16:10:47 INFO  Main:74 - Retrieved books with isbn 9781467761796 from database
+2021-11-05 16:11:00 INFO  Main:74 - Retrieved books with isbn 9781467761796 from database
+2021-11-05 16:11:03 INFO  Main:74 - Retrieved books with isbn 9781467761796 from database
+2021-11-05 16:11:25 INFO  Main:126 - Retrieved books with genre Fantasy from database
+2021-11-05 16:11:26 INFO  Main:74 - Retrieved books with isbn 9780747546245 from database
+2021-11-05 16:12:21 INFO  Main:74 - Retrieved books with isbn 9780747546245 from database
+2021-11-05 16:12:32 INFO  Main:287 - Added book to cart of user with username jessshi8
