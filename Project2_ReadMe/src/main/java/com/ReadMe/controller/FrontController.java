@@ -223,7 +223,7 @@ public class FrontController {
 		uServ.insertUser(user);
 		eServ.sendEmail(user.getEmail(), "ReadMe: Temporary Password", 
 				"Thank you for registering an account, " + user.getUsername() + 
-				".\nYour temporary password is: " + password + ".\nYou may change your password after logging in.");
+				".\nYour temporary password is: " + password + "\nYou may change your password after logging in.");
 		Main.log.info("Inserted user with username " + user.getUsername() + " into database");
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
 	}
@@ -248,7 +248,7 @@ public class FrontController {
 
 		eServ.sendEmail(user.getEmail(), "ReadMe: Password changed", 
 				"Password has been changed for user: " + user.getUsername() + 
-				".\nYour new password is: " + user.getPassword() + ".\nYou may change your password after logging in.");
+				".\nYour new password is: " + user.getPassword() + "\nYou may change your password after logging in.");
 		Main.log.info("Inserted user with username " + user.getUsername() + " into database");
 		user.setPassword(sha256(user.getPassword()));
 		uServ.insertUser(user);
@@ -284,7 +284,7 @@ public class FrontController {
 	@PostMapping("/add")
 	public ResponseEntity<Object> addBook(@RequestBody User user) {
 		uServ.updateUser(user);
-		Main.log.info("Added book to cart of user with username " + user.getUsername());
+		Main.log.info("Added book to cart of user with username " + user.getUsername() + "\nYou may change your password after logging in.");
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()),
 				HttpStatus.CREATED);
 	}
