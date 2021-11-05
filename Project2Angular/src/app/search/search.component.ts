@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
-export class HomeComponent implements OnInit {
+export class SearchComponent implements OnInit {
   public sessionUser:string|null = null;
   public user:any = null;
   filterForm!: FormGroup;
@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
     this.sessionUser = window.sessionStorage.getItem("currentUser");
     if (this.sessionUser != null) {
       this.user = JSON.parse(this.sessionUser);
-      console.log(this.user);
     }
     this.filterForm = this.formBuilder.group({
       filter: [null]

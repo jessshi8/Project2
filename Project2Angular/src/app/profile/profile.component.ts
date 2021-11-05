@@ -10,10 +10,8 @@ import { sha256 } from 'js-sha256';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  
   public sessionUser:string|null = "";
   public user:any=null;
-  // public user: User = new User("","","","","","",[],[],[]);
   public errorMessage:string ="error message";
   public successMessage:string ="success message";
   public passuser:User | undefined;
@@ -44,7 +42,7 @@ export class ProfileComponent implements OnInit {
         let stringuser=JSON.stringify(user1);
             this.profileServ.updatePassword(stringuser).subscribe(
               response => {
-                console.log(response);
+                sessionStorage.setItem("currentUser", JSON.stringify(response));
               },
               error =>{
                 console.warn("there was an error ", error);
@@ -61,17 +59,5 @@ export class ProfileComponent implements OnInit {
       this.errorMessage ="Current password is incorrect";
       this.successMessage ="";
     }
-
-    // let stringFood = JSON.stringify(food.value);
-    // this.foodServ.insertFood(stringFood).subscribe(
-    //   response => {
-    //     console.log(response);
-    //     this.foodList.push(response);
-    //   },
-    //   error =>{
-    //     console.warn("there was an error ", error);
-    //   }
-    // )
   }
-
 }

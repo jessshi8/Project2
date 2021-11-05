@@ -12,13 +12,13 @@ import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { CartComponent } from './cart/cart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrdersComponent } from './orders/orders.component';
-import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './search/search.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: SearchComponent},
   {path: 'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegistrationComponent},
@@ -43,10 +43,9 @@ const routes: Routes = [
     ProfileComponent,
     OrdersComponent,
     ProfileComponent,
-    HomeComponent,
+    SearchComponent,
     BookDetailsComponent,
     AboutComponent
-
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule.forRoot(routes)

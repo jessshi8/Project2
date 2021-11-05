@@ -8,4 +8,16 @@
 
     <button (click)="addToCart()">Add To Cart</button>
     <button (click)="addToBookmarks()">Add To Bookmarks</button>
+
+    <div *ngIf="inCart; then cartBlock"></div>
+    <ng-template #cartBlock>
+        <br>
+        <small class="form-text text-danger">This book already exists in your cart.</small>
+    </ng-template>
+
+    <div *ngIf="inBookmarks; then bmBlock"></div>
+    <ng-template #bmBlock>
+        <br>
+        <small class="form-text text-danger">This book already exists in your bookmarks.</small>
+    </ng-template>
 </div>
