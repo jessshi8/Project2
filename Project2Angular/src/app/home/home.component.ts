@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     this.sessionUser = window.sessionStorage.getItem("currentUser");
     if (this.sessionUser != null) {
       this.user = JSON.parse(this.sessionUser);
+      console.log(this.user);
     }
     this.filterForm = this.formBuilder.group({
       filter: [null]

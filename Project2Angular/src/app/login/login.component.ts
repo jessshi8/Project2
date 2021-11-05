@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
     this.loginService.validateUser(stringUser).subscribe(
       response => { 
         this.loggedIn=true;
+        console.log(response);
         sessionStorage.setItem("currentUser", JSON.stringify(response));
         window.location.href="http://localhost:4200/";
       },
