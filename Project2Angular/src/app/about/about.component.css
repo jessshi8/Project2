@@ -1,4 +1,4 @@
-#title, #body {
+#title {
     text-align: center;
 }
 
@@ -7,16 +7,7 @@
     height: 100%;
 	margin: 0 auto 50px;
 	padding: 40px;
-	background: #EAE6E5;
+	background: #524c49;
+    color: white;
 	border-radius: 30px;
-}
-
-
-table {
-	table-layout: fixed;
-}
-
-th {
-	text-align: center;
-	background-color: #524c49;
 }
