@@ -23,14 +23,14 @@ export class ProfileService {
     return this.http.get<User>(this.urlBase+"/users/joeytest", httpHead);
   }
 
-  public updateUser(user:any): Observable<User>{
+  public updatePassword(user:any): Observable<User>{
     const httpHead = {
       headers: new HttpHeaders({
         'Content-Type':'application/json',
         'Access-Control-Allow-Origin':'*'
       })
     };
-    return this.http.post<User>(this.urlBase+"/updateuser",user, httpHead);
+    return this.http.post<User>(this.urlBase+"/updatepassword",user, httpHead);
   }
 
 }
