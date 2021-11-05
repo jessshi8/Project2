@@ -1,13 +1,45 @@
 <div class="catalog-container">
     <h2 id="title">Book Details</h2>
     <hr class="solid">
-    <h3>{{book[0].title}}</h3>
-    <h3>{{book[0].book_cover}}</h3>
-    <h3>{{book[0].author}}</h3>
-    <h3>{{book[0].publisher}}</h3>
+    <h4 id="title">{{book[0].title}}</h4>
+    <br>
+    <img id="cover" src="data:image/png;base64,{{book[0].book_cover}}" alt="Book Cover"/>
+    <br>
+    <div class="row">
+        <h6>Summary: </h6>
+        <p id="summary">{{book[0].summary}}</p>
+    </div>
+    <br>
+    <div class="row">
+        <h6>Written by: </h6>
+        <p>{{book[0].author}}</p>
+        <br>
+        <h6>Genre: </h6>
+        <p>{{book[0].genre}}</p>
+        <br>
+        <h6>Published by: </h6>
+        <p>{{book[0].publisher}}</p>
+        <br>
+        <h6>Publication date: </h6>
+        <p>{{book[0].published}}</p>
+    </div>
+    <hr class="solid">
+    <div class="row">
+        <button (click)="addToCart()"><i class="bi bi-cart4"></i> Add To Cart</button>
+        <button (click)="addToBookmarks()"><i class="bi bi-journal-bookmark-fill"></i> Add To Bookmarks</button>
+    </div>
 
-    <button (click)="addToCart()">Add To Cart</button>
-    <button (click)="addToBookmarks()">Add To Bookmarks</button>
+        
+    
+    
+    
+   <!--  <p>{book[0].genre}}</p>{</h6>
+    <h6 id="publisher">Published by
+        <p>{{book[0].publisher}} on {{book[0].published}}</p>
+    </h6> -->
+
+
+    
 
     <div *ngIf="inCart; then cartBlock"></div>
     <ng-template #cartBlock>
