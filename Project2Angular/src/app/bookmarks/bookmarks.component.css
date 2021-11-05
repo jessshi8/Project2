@@ -11,7 +11,12 @@
 	border-radius: 30px;
 }
 
+
+table {
+	table-layout: fixed;
+}
+
 th {
 	text-align: center;
-	background-color: #383331;
+	background-color: #524c49;
 }
