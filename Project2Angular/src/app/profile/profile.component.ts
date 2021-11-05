@@ -14,8 +14,8 @@ export class ProfileComponent implements OnInit {
   public sessionUser:string|null = "";
   public user:any=null;
   // public user: User = new User("","","","","","",[],[],[]);
-  public errorMessage:string ="error message";
-  public successMessage:string ="success message";
+  public errorMessage:string ="";
+  public successMessage:string ="";
   public passuser:User | undefined;
 
   passwordGroup = new FormGroup({
@@ -36,42 +36,37 @@ export class ProfileComponent implements OnInit {
 
   public submitPassword(passwords: FormGroup){
     let user1:User =JSON.parse(this.sessionUser || '{}');
-    if(sha256(passwords.value.currentP)===user1.password){
-      if(passwords.value.newP===passwords.value.newP2){
-        //-------
-        user1.password=passwords.value.newP;
-        console.log(user1);
-        let stringuser=JSON.stringify(user1);
-            this.profileServ.updatePassword(stringuser).subscribe(
-              response => {
-                console.log(response);
-              },
-              error =>{
-                console.warn("there was an error ", error);
-              }
-            )
-        //-------
-        this.errorMessage ="";
-        this.successMessage ="Successfully updated password";
+    if(passwords.value.newP.length>=5&&passwords.value.newP.length<=20){
+      if(sha256(passwords.value.currentP)===user1.password){
+        if(passwords.value.newP===passwords.value.newP2){
+          //-------
+          user1.password=passwords.value.newP;
+          console.log(user1);
+          let stringuser=JSON.stringify(user1);
+              this.profileServ.updatePassword(stringuser).subscribe(
+                response => {
+                  console.log(response);
+                },
+                error =>{
+                  console.warn("there was an error ", error);
+                }
+              )
+          //-------
+          this.errorMessage ="";
+          this.successMessage ="Successfully updated password";
+        } else {
+          this.errorMessage ="New passwords do not match";
+          this.successMessage ="";
+        }
       } else {
-        this.errorMessage ="New passwords do not match";
+        this.errorMessage ="Current password is incorrect";
         this.successMessage ="";
       }
-    } else {
-      this.errorMessage ="Current password is incorrect";
+    } else{
+      this.errorMessage ="Current password incorrect number of characters";
       this.successMessage ="";
     }
-
-    // let stringFood = JSON.stringify(food.value);
-    // this.foodServ.insertFood(stringFood).subscribe(
-    //   response => {
-    //     console.log(response);
-    //     this.foodList.push(response);
-    //   },
-    //   error =>{
-    //     console.warn("there was an error ", error);
-    //   }
-    // )
+   
   }
 
 }
