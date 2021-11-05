@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.css']
 })
-export class HomeComponent implements OnInit {
+export class SearchComponent implements OnInit {
   public sessionUser:string|null = null;
   public user:any = null;
   filterForm!: FormGroup;

@@ -1,12 +1,19 @@
-<div class="container">
-    <h1 id="title">Search Results</h1>
+<div class="catalog-container">
+    <h2 id="title">Search Results</h2>
     <hr class="solid">
-    <tr *ngFor="let book of bookList">
-        <td>{{book.title}}</td>
-    </tr>
-    <!-- <div *ngIf="bookList.length==undefined; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>{{bookList[0].title}}</ng-template>
-    <ng-template #elseBlock>
-        
-    </ng-template> -->
+    <div *ngIf="bookList.length==0; then emptyBlock else notEmptyBlock"></div>
+    <ng-template #emptyBlock>
+        <p id="title">No results found.</p>
+    </ng-template>
+    <ng-template #notEmptyBlock>
+        <div class="container" *ngFor="let book of bookList">
+            <h3>
+                <a
+                [title]="book.title  + ' Details'" 
+                [routerLink]="['/book', book.isbn]">
+                {{book.title}}
+                </a>
+            </h3>
+        </div>
+    </ng-template>
 </div>

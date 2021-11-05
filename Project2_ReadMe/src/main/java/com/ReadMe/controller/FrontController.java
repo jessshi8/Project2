@@ -1,14 +1,10 @@
 package com.ReadMe.controller;
 
 import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -159,17 +155,7 @@ public class FrontController {
 		return new ResponseEntity<String>("No book with that ISBN", HttpStatus.NOT_FOUND);
 	}
 	
-	//GET: localhost:9015/bookstore/users/initial
-	@GetMapping("/users/initial") 
-	public ResponseEntity<List<User>>insertInitialValues() {
-		List<Book> orders = bServ.getBookByAuthor("Nicholas Sparks");
-		List<User> uList = new ArrayList<User>(Arrays.asList(new User("orderstest","password","test","user","test@gmail.com","Customer", orders, null, null))); 
-		for (User user:uList) {
-			uServ.insertUser(user); 
-		} 
-		return new ResponseEntity<List<User>>(uServ.getAllUsers(), HttpStatus.CREATED); 
-	}
-	 
+	/* BREAK BETWEEN USER METHODS AND BOOK METHODS */
 
 	//GET: localhost:9015/bookstore/users
 	@GetMapping("/users")
@@ -236,15 +222,15 @@ public class FrontController {
 		user.setPassword(encrypted);
 		uServ.insertUser(user);
 		eServ.sendEmail(user.getEmail(), "ReadMe: Temporary Password", 
-				"Thank you for registering an account, " + user.getFirstname() + 
-				".\nYour temporary password is: " + password + ".\nYou may reset your password after logging in.");
+				"Thank you for registering an account, " + user.getUsername() + 
+				".\nYour temporary password is: " + password + ".\nYou may change your password after logging in.");
 		Main.log.info("Inserted user with username " + user.getUsername() + " into database");
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
 	}
 	
-	//POST: localhost:9015/bookstore/updateuser
+	//POST: localhost:9015/bookstore/update
 	//Include user in JSON format in the request body
-	@PostMapping("/updateuser")
+	@PostMapping("/update")
 	public ResponseEntity<Object> updateUser(@RequestBody User user) {
 		if(uServ.getUserByUsername(user.getUsername()) == null) {
 			Main.log.warn("Failed to update user with username " + user.getUsername() + ": User of that username does not exist");
@@ -254,29 +240,21 @@ public class FrontController {
 		Main.log.info("Updated user with username " + user.getUsername());
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
 	}
-	
-	//-----------------Joey
+
+	//POST: localhost:9015/bookstore/updatepassword
+	//Include user in JSON format in the request body with password changed
 	@PostMapping("/updatepassword")
 	public ResponseEntity<Object> updatePassword(@RequestBody User user) {
-		if(uServ.getUserByUsername(user.getUsername()) == null) {
-			Main.log.warn("Failed to update user with username " + user.getUsername() + ": User of that username does not exist");
-			return new ResponseEntity<>("User of that username does not exist", HttpStatus.FORBIDDEN);
-		}
-		String password=user.getPassword();
-		String encrypted = sha256(password);
-		user.setPassword(encrypted);
-		uServ.updateUser(user);
-		Main.log.info("Password changed with username " + user.getUsername());
-		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.ACCEPTED);
+
+		eServ.sendEmail(user.getEmail(), "ReadMe: Password changed", 
+				"Password has been changed for user: " + user.getUsername() + 
+				".\nYour new password is: " + user.getPassword() + ".\nYou may change your password after logging in.");
+		Main.log.info("Inserted user with username " + user.getUsername() + " into database");
+		user.setPassword(sha256(user.getPassword()));
+		uServ.insertUser(user);
+		Main.log.info("Password changed for username: " +user.getUsername());
+		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()), HttpStatus.CREATED);
 	}
-	
-	@GetMapping("/sha256/{password}")
-	public ResponseEntity<Object> updatePassword(@PathVariable("password") String pword) {
-		
-		return new ResponseEntity<>(sha256(pword), HttpStatus.OK);
-	}
-	
-	//------------
 	
 	//POST: localhost:9015/bookstore/resetpassword
 	//Include user in JSON format in the request body
@@ -299,8 +277,20 @@ public class FrontController {
 		return new ResponseEntity<>("User of that username does not exist", HttpStatus.FORBIDDEN);
 	}
 	
+	/* JUNCTION METHODS */
+	
+	/// POST: localhost:9015/bookstore/add
+	// Works for add to cart and add to bookmarks
+	@PostMapping("/add")
+	public ResponseEntity<Object> addBook(@RequestBody User user) {
+		uServ.updateUser(user);
+		Main.log.info("Added book to cart of user with username " + user.getUsername());
+		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()),
+				HttpStatus.CREATED);
+	}
 	
 	
+	/* HELPER METHODS */
 	private static char randomCharacter() {
 		int rand = (int)(Math.random()*62);
 		if(rand <= 9) {

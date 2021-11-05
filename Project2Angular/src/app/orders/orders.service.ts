@@ -15,13 +15,13 @@ export class OrdersService {
 
   constructor() { }
   
-    public getOrders(): Observable<Book[]>{
-      this.sessionUser = window.sessionStorage.getItem("currentUser");
-      if (this.sessionUser != null) {
-        this.user = JSON.parse(this.sessionUser);
-      }
-      return this.user.orders;
-    }
+    // public getOrders(): Observable<Book[]>{
+    //   this.sessionUser = window.sessionStorage.getItem("currentUser");
+    //   if (this.sessionUser != null) {
+    //     this.user = JSON.parse(this.sessionUser);
+    //   }
+    //   return this.user.orders;
+    // }
 
   // public getAllBooks(): Observable<Book[]>{
   //   const httpHead = {

@@ -1,8 +1,8 @@
 .login-container, .hidden-container {
 	width: 500px;
-	margin: 50px auto;
+	margin: 0 auto 50px;
 	padding: 40px;
-	background: #ebedee;
+	background: #EAE6E5;
 	border-radius: 30px;
 }
 #title, #message {
@@ -13,7 +13,7 @@
 }
 #forgot-password {
 	text-decoration: underline;
-	color: lightseagreen;
+	color: #017fb4;
 }
 #forgot-password:hover {
 	cursor: pointer;
@@ -37,7 +37,7 @@
 }
   
 #login-btn:hover {
-    background-color: #84c444;
+    background-color: #017fb4;
     color: white;
 }
 

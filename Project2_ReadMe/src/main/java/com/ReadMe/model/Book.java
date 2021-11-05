@@ -24,7 +24,7 @@ public class Book {
 	private String isbn;
 	
 	@Column(name = "book_cover")
-	private byte[] cover;
+	private byte[] book_cover;
 	
 	@Column(name = "title")
 	private String title;
@@ -50,7 +50,7 @@ public class Book {
 	public Book(byte[] cover, String title, String author, String publisher, String published,
 			String genre, double price, String summary) {
 		super();
-		this.cover = cover;
+		this.book_cover = cover;
 		this.title = title;
 		this.author = author;
 		this.publisher = publisher;
@@ -62,7 +62,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [isbn=" + isbn + ", cover=" + Arrays.toString(cover) + ", title=" + title
+		return "Book [isbn=" + isbn + ", cover=" + Arrays.toString(book_cover) + ", title=" + title
 				+ ", author=" + author + ", publisher=" + publisher + ", published=" + published
 				+ ", genre=" + genre + ", price=" + price + ", summary=" + summary + "]";
 	}

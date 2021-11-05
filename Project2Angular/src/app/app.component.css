@@ -1,9 +1,7 @@
-header {
+header, .nav-item {
     text-align: center;
 }
-footer {
-    margin: 0;
-    width: 100%;
-    position: absolute;
-    text-align: center;
+
+nav {
+    background-color: #383331;
 }

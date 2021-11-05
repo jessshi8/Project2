@@ -1,17 +1,26 @@
-#greeting {
+.container {
+    width: 800px;
+	margin: 0 auto 50px;
+	padding: 40px;
+	background: #EAE6E5;
+	border-radius: 30px;
+}
+
+#greeting, #title {
     text-align: center;
 }
 
 #dropdown {
-    border: 2px solid;
+    border: 1px solid #536f87;
     border-radius: 4px;
+    color: #536f87;
 }
 #dropdown:hover {
     cursor: pointer;
 }
 
 #search-bar {
-    border: 2px solid gainsboro;
+    border: 1px solid gainsboro;
     margin-left: 8px;
     width: 100%;
     border-radius: 4px;
@@ -20,13 +29,13 @@
 #search-btn {
     padding: 5px 10px;
     background-color: white;
-    color: #71c6cb;
-    border: 2px solid #71c6cb; 
+    color: #536f87;
+    border: 1px solid #536f87; 
     transition-duration: 0.4s;
     border-radius: 4px;
 }
   
 #search-btn:hover {
-    background-color: #71c6cb;
+    background-color: #536f87;
     color: white;
 }
