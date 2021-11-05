@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { User } from '../user';
 import { Book } from '../book';
 import { BookDetailsService } from '../book-details/book-details.service';
-import { User } from '../user';
 import { BookmarksService } from './bookmarks.service';
 
 @Component({
@@ -53,7 +53,6 @@ export class BookmarksComponent implements OnInit {
     this.bookServ.addBook(stringUser).subscribe(
       response => {
         window.sessionStorage.setItem("currentUser", JSON.stringify(response));
-        window.location.reload();
       }
     )
   }

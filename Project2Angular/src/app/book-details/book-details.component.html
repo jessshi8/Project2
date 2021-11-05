@@ -1,6 +1,17 @@
 <div class="catalog-container">
     <h2 id="title">Book Details</h2>
     <hr class="solid">
+
+    <div *ngIf="inCart; then cartBlock"></div>
+    <ng-template #cartBlock>
+        <p id="message" class="form-text text-danger">Error! This book already exists in your cart.</p>
+    </ng-template>
+
+    <div *ngIf="inBookmarks; then bmBlock"></div>
+    <ng-template #bmBlock>
+        <p id="message" class="form-text text-danger">Error! This book already exists in your bookmarks.</p>
+    </ng-template>
+
     <h4 id="title">{{book[0].title}}</h4>
     <br>
     <img id="cover" src="data:image/png;base64,{{book[0].book_cover}}" alt="Book Cover"/>
@@ -28,28 +39,4 @@
         <button (click)="addToCart()"><i class="bi bi-cart4"></i> Add To Cart</button>
         <button (click)="addToBookmarks()"><i class="bi bi-journal-bookmark-fill"></i> Add To Bookmarks</button>
     </div>
-
-        
-    
-    
-    
-   <!--  <p>{book[0].genre}}</p>{</h6>
-    <h6 id="publisher">Published by
-        <p>{{book[0].publisher}} on {{book[0].published}}</p>
-    </h6> -->
-
-
-    
-
-    <div *ngIf="inCart; then cartBlock"></div>
-    <ng-template #cartBlock>
-        <br>
-        <small class="form-text text-danger">This book already exists in your cart.</small>
-    </ng-template>
-
-    <div *ngIf="inBookmarks; then bmBlock"></div>
-    <ng-template #bmBlock>
-        <br>
-        <small class="form-text text-danger">This book already exists in your bookmarks.</small>
-    </ng-template>
 </div>
