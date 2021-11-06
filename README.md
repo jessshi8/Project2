@@ -16,5 +16,4 @@
   * Login, Register, Book Catalog, Shopping Cart, Checkout, User Profile
   * Logout
 
-BA AA Hmd
-test hmd
+ba
