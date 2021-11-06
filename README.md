@@ -17,3 +17,4 @@
   * Logout
 
 BA AA Hmd
+test hmd
