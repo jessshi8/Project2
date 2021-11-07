@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   cartList: Book[] = [];
   public sessionUser:string|null = null;
   public user:any = null;
+  public totalPrice:number = 0;
 
   cartGroup = new FormGroup({
     bookCover: new FormControl(''),
@@ -34,6 +35,9 @@ export class CartComponent implements OnInit {
       if (this.sessionUser != null) {
         this.user = JSON.parse(this.sessionUser);
         this.cartList = this.user.cart;
+        this.cartList.forEach((b) => {
+          this.totalPrice += b.price;
+        });
       }
   }
 
@@ -49,6 +53,30 @@ export class CartComponent implements OnInit {
     user.cart = this.cartList;
     // add book to bookmarks
     user.bookmarks.push(book);
+    // calculate new total price
+    this.totalPrice = 0;
+    this.cartList.forEach((b) => {
+      this.totalPrice += b.price;
+    });
+    let stringUser = JSON.stringify(user);
+    this.bookServ.addBook(stringUser).subscribe(
+      response => {
+        window.sessionStorage.setItem("currentUser", JSON.stringify(response));
+      }
+    )
+  }
+
+  public addToOrders() {
+    let user:User = this.user;
+    // move cart to orders
+    this.cartList.forEach((b) => {
+      user.orders.push(b);
+    });
+    // clear cart
+    this.cartList = [];
+    user.cart = this.cartList;
+    // zero out price
+    this.totalPrice = 0;
     let stringUser = JSON.stringify(user);
     this.bookServ.addBook(stringUser).subscribe(
       response => {
@@ -66,6 +94,11 @@ export class CartComponent implements OnInit {
     });
     // set user's cart to updated cart list
     user.cart=this.cartList;
+    // calculate new total price
+    this.totalPrice = 0;
+    this.cartList.forEach((b) => {
+      this.totalPrice += b.price;
+    });
     let stringUser = JSON.stringify(user);
     this.cartServ.updateUser(stringUser).subscribe(
       response => {
