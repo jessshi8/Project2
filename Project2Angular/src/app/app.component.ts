@@ -6,10 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public user:any=null;
+  public sessionUser:string|null = "";
+  public loggedin: string="true";
+
   public logout() {
-    console.log("user logged out");
+    this.loggedin="false";
+    //console.log("user logged out");
     window.onunload=function(){null};
     sessionStorage.clear();
+  }
+
+  public readcustomerboolean():boolean  {
+    if(window.sessionStorage.getItem("currentUser")==null){
+      return true;
+    }
+    return false;
   }
 }
 
