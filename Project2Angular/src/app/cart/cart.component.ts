@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Book } from '../book';
 import { BookDetailsService } from '../book-details/book-details.service';
 import { User } from '../user';
@@ -14,6 +15,8 @@ export class CartComponent implements OnInit {
   cartList: Book[] = [];
   public sessionUser:string|null = null;
   public user:any = null;
+  public totalPrice:number = 0;
+  public cartStatus:string = "";
 
   cartGroup = new FormGroup({
     bookCover: new FormControl(''),
@@ -27,14 +30,17 @@ export class CartComponent implements OnInit {
   });
 
   
-  constructor(private cartServ:CartService, private bookServ:BookDetailsService) { }
+  constructor(private cartServ:CartService, private bookServ:BookDetailsService, private router:Router) { }
 
   ngOnInit(): void {
-      this.sessionUser = window.sessionStorage.getItem("currentUser");
-      if (this.sessionUser != null) {
-        this.user = JSON.parse(this.sessionUser);
-        this.cartList = this.user.cart;
-      }
+    this.sessionUser = window.sessionStorage.getItem("currentUser");
+    if (this.sessionUser != null) {
+      this.user = JSON.parse(this.sessionUser);
+      this.cartList = this.user.cart;
+      this.cartList.forEach((b) => {
+      this.totalPrice += b.price;
+      });
+    }
   }
 
   public addToBookmarks(book:Book) {
@@ -49,12 +55,26 @@ export class CartComponent implements OnInit {
     user.cart = this.cartList;
     // add book to bookmarks
     user.bookmarks.push(book);
+    // calculate new total price
+    this.totalPrice = 0;
+    this.cartList.forEach((b) => {
+      this.totalPrice += b.price;
+    });
     let stringUser = JSON.stringify(user);
     this.bookServ.addBook(stringUser).subscribe(
       response => {
         window.sessionStorage.setItem("currentUser", JSON.stringify(response));
       }
     )
+  }
+
+  public toCheckout() {
+    if (this.cartList.length > 0) {
+      this.router.navigateByUrl('/checkout');
+    }
+    else {
+      this.cartStatus = "Cart is empty.";
+    }
   }
 
   public remove(book:Book) {
@@ -66,6 +86,11 @@ export class CartComponent implements OnInit {
     });
     // set user's cart to updated cart list
     user.cart=this.cartList;
+    // calculate new total price
+    this.totalPrice = 0;
+    this.cartList.forEach((b) => {
+      this.totalPrice += b.price;
+    });
     let stringUser = JSON.stringify(user);
     this.cartServ.updateUser(stringUser).subscribe(
       response => {

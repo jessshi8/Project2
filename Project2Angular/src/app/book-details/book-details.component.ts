@@ -17,6 +17,7 @@ export class BookDetailsComponent implements OnInit {
   public user!: User;
   inCart!:boolean;
   inBookmarks!:boolean;
+  inOrders!:boolean;
   loggedIn!:boolean;
 
   constructor(private route: ActivatedRoute, private catalogServ: CatalogService, private bookService: BookDetailsService) { }
@@ -24,6 +25,7 @@ export class BookDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.inCart=false;
     this.inBookmarks=false;
+    this.inOrders=false;
     this.loggedIn=false;
     //Getting the book isbn from the current route.
     const routeParams = this.route.snapshot.paramMap;
@@ -34,6 +36,7 @@ export class BookDetailsComponent implements OnInit {
     this.catalogServ.getBooksByISBN(bookIsbnFromRoute).subscribe(
       response=>{
         this.book=response;
+        console.log(this.book[0].book_cover);
       }
     );
     this.sessionUser = window.sessionStorage.getItem("currentUser");
@@ -46,6 +49,7 @@ export class BookDetailsComponent implements OnInit {
   public addToCart() {
     this.inBookmarks=false;
     this.inCart=false;
+    this.inOrders=false;
 
     if (this.user != null) {
       this.loggedIn=true;
@@ -63,7 +67,13 @@ export class BookDetailsComponent implements OnInit {
         }
       }
 
-      if (!this.inCart && !this.inBookmarks) {
+      for (let b of user.orders) {
+        if (b.isbn == this.book[0].isbn) {
+          this.inOrders=true;
+        }
+      }
+
+      if (!this.inCart && !this.inBookmarks && !this.inOrders) {
         user.cart.push(this.book[0]);
         console.log(user.cart);
         let stringUser = JSON.stringify(user);
@@ -83,6 +93,7 @@ export class BookDetailsComponent implements OnInit {
   public addToBookmarks() {
     this.inBookmarks=false;
     this.inCart=false;
+    this.inOrders
     
     if (this.user != null) {
       this.loggedIn=true;
@@ -100,7 +111,13 @@ export class BookDetailsComponent implements OnInit {
         }
       }
 
-      if (!this.inBookmarks && !this.inCart) {
+      for (let b of user.orders) {
+        if (b.isbn == this.book[0].isbn) {
+          this.inOrders=true;
+        }
+      }
+
+      if (!this.inBookmarks && !this.inCart && !this.inOrders) {
         user.bookmarks.push(this.book[0]);
         let stringUser = JSON.stringify(user);
         this.bookService.addBook(stringUser).subscribe(
