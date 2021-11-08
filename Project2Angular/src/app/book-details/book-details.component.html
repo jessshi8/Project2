@@ -4,8 +4,7 @@
 
     <h4 id="title">{{book[0].title}}</h4>
     <h5 id="price">{{book[0].price | currency}}</h5>
-    <img id="cover" src="../assets/book_cover/{{book[0].isbn}}.jpg" alt="Book Cover">
-    <!-- <img id="cover" src="data:image/png;base64,{{book[0].book_cover}}" alt="Book Cover"/> -->
+    <img id="cover" src="{{book[0].book_cover}}" alt="Book Cover">
     <br>
     <div class="row">
         <h6>Summary: </h6>

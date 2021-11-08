@@ -26,7 +26,6 @@ export class BookmarksComponent implements OnInit {
     bookSummary: new FormControl('')
   });
 
-  
   constructor(private bookmarkServ:BookmarksService, private bookServ:BookDetailsService) { }
 
   ngOnInit(): void {

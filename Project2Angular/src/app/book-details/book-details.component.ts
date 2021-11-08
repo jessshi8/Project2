@@ -34,6 +34,7 @@ export class BookDetailsComponent implements OnInit {
     this.catalogServ.getBooksByISBN(bookIsbnFromRoute).subscribe(
       response=>{
         this.book=response;
+        console.log(this.book[0].book_cover);
       }
     );
     this.sessionUser = window.sessionStorage.getItem("currentUser");
