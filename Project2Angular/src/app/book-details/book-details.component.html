@@ -36,16 +36,6 @@
     </ng-template>
     <hr class="solid">
 
-    <div *ngIf="inCart; then cartBlock"></div>
-    <ng-template #cartBlock>
-        <p id="message" class="form-text text-danger">Error! This book already exists in your cart.</p>
-    </ng-template>
-
-    <div *ngIf="inBookmarks; then bmBlock"></div>
-    <ng-template #bmBlock>
-        <p id="message" class="form-text text-danger">Error! This book already exists in your bookmarks.</p>
-    </ng-template>
-
     <div *ngIf="inOrders; then orderBlock"></div>
     <ng-template #orderBlock>
         <p id="message" class="form-text text-danger">Error! You've already ordered this book.</p>
