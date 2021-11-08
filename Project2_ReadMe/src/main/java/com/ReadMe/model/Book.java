@@ -1,7 +1,5 @@
 package com.ReadMe.model;
 
-import java.util.Arrays;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,7 +22,7 @@ public class Book {
 	private String isbn;
 	
 	@Column(name = "book_cover")
-	private byte[] book_cover;
+	private String book_cover;
 	
 	@Column(name = "title")
 	private String title;
@@ -47,7 +45,7 @@ public class Book {
 	@Column(name = "summary")
 	private String summary;
 
-	public Book(byte[] cover, String title, String author, String publisher, String published,
+	public Book(String cover, String title, String author, String publisher, String published,
 			String genre, double price, String summary) {
 		super();
 		this.book_cover = cover;
@@ -62,7 +60,7 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [isbn=" + isbn + ", cover=" + Arrays.toString(book_cover) + ", title=" + title
+		return "Book [isbn=" + isbn + ", cover=" + book_cover + ", title=" + title
 				+ ", author=" + author + ", publisher=" + publisher + ", published=" + published
 				+ ", genre=" + genre + ", price=" + price + ", summary=" + summary + "]";
 	}

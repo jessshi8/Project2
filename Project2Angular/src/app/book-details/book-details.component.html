@@ -4,7 +4,7 @@
 
     <h4 id="title">{{book[0].title}}</h4>
     <h5 id="price">{{book[0].price | currency}}</h5>
-    <img id="cover" src="data:image/png;base64,{{book[0].book_cover}}" alt="Book Cover"/>
+    <img id="cover" src="{{book[0].book_cover}}" alt="Book Cover">
     <br>
     <div class="row">
         <h6>Summary: </h6>
@@ -24,7 +24,6 @@
         <h6>Publication date: </h6>
         <p>{{book[0].published}}</p>
     </div>
-    <hr class="solid">
 
     <div *ngIf="inCart; then cartBlock"></div>
     <ng-template #cartBlock>
@@ -35,6 +34,7 @@
     <ng-template #bmBlock>
         <p id="message" class="form-text text-danger">Error! This book already exists in your bookmarks.</p>
     </ng-template>
+    <hr class="solid">
 
     <div *ngIf="inOrders; then orderBlock"></div>
     <ng-template #orderBlock>
