@@ -27,8 +27,8 @@
             </tbody>
         </table>
         <div id = "body">
-            <p id = "body">Total price: ${{totalPrice}}</p>
-            <button id="checkout" (click)="addToOrders()"><i class="bi bi-cart4"></i> Checkout</button>
+            <button id="checkout" (click)="toCheckout()"><i class="bi bi-cart4"></i> To Checkout</button>
+            <p id = "body">{{cartStatus}}</p>
         </div>
     </ng-template>
     <ng-template #elseBlock>
