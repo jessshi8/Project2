@@ -284,7 +284,7 @@ public class FrontController {
 	@PostMapping("/add")
 	public ResponseEntity<Object> addBook(@RequestBody User user) {
 		uServ.updateUser(user);
-		Main.log.info("Added book to cart of user with username " + user.getUsername());
+		Main.log.info("Added book to cart/bookmarks/orders of user with username " + user.getUsername());
 		return new ResponseEntity<>(uServ.getUserByUsername(user.getUsername()),
 				HttpStatus.CREATED);
 	}
