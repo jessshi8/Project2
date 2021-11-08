@@ -1,11 +1,1 @@
-2021-11-05 08:15:26 INFO  Main:230 - Login from user with username joeytemp10
-2021-11-05 08:15:48 WARN  Main:102 - Book with author a not found
-2021-11-05 08:17:07 WARN  Main:89 - Book with title alice not found
-2021-11-05 08:17:44 WARN  Main:89 - Book with title Alice not found
-2021-11-05 08:18:03 WARN  Main:89 - Book with title The not found
-2021-11-05 08:18:27 INFO  Main:80 - Retrieved books with isbn 9781503222687 from database
-2021-11-05 08:18:29 INFO  Main:80 - Retrieved books with isbn 9781503222687 from database
-2021-11-05 08:18:32 INFO  Main:170 - Added book to cart of user with username joeytemp10
-2021-11-05 08:18:51 INFO  Main:80 - Retrieved books with isbn 9781503222687 from database
-2021-11-05 08:19:32 WARN  Main:102 - Book with author The not found
-2021-11-05 08:19:51 WARN  Main:102 - Book with author Life not found
+

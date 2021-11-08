@@ -12,14 +12,21 @@ import { BookDetailsService } from './book-details.service';
   styleUrls: ['./book-details.component.css']
 })
 export class BookDetailsComponent implements OnInit {
-
   book: Book[] = [];
   public sessionUser:string|null = null;
   public user!: User;
+  inCart!:boolean;
+  inBookmarks!:boolean;
+  inOrders!:boolean;
+  loggedIn!:boolean;
 
   constructor(private route: ActivatedRoute, private catalogServ: CatalogService, private bookService: BookDetailsService) { }
 
   ngOnInit(): void {
+    this.inCart=false;
+    this.inBookmarks=false;
+    this.inOrders=false;
+    this.loggedIn=false;
     //Getting the book isbn from the current route.
     const routeParams = this.route.snapshot.paramMap;
     const bookIsbnFromRoute = String(routeParams.get('bookIsbn'));
@@ -34,42 +41,95 @@ export class BookDetailsComponent implements OnInit {
     this.sessionUser = window.sessionStorage.getItem("currentUser");
     if (this.sessionUser != null) {
       this.user = JSON.parse(this.sessionUser);
+      console.log(this.user);
     }
   }
 
   public addToCart() {
+    this.inBookmarks=false;
+    this.inCart=false;
+    this.inOrders=false;
+
     if (this.user != null) {
+      this.loggedIn=true;
       let user:User = this.user;
-      user.cart.push(this.book[0]);
-      console.log(user.cart);
-      let stringUser = JSON.stringify(user);
-      this.bookService.addBook(stringUser).subscribe(
-        response => {
-          console.log(response);
-          window.sessionStorage.setItem("currentUser", JSON.stringify(response));
-        },
-        error => {
-          console.warn("This error occurred: " + error);
+
+      for (let b of user.bookmarks) {
+        if (b.isbn == this.book[0].isbn) {
+          this.inBookmarks=true;
         }
-      )
-    }
+      }
+
+      for (let b of user.cart) {
+        if (b.isbn == this.book[0].isbn) {
+          this.inCart=true;
+        }
+      }
+
+      for (let b of user.orders) {
+        if (b.isbn == this.book[0].isbn) {
+          this.inOrders=true;
+        }
+      }
+
+      if (!this.inCart && !this.inBookmarks && !this.inOrders) {
+        user.cart.push(this.book[0]);
+        console.log(user.cart);
+        let stringUser = JSON.stringify(user);
+        this.bookService.addBook(stringUser).subscribe(
+          response => {
+            window.sessionStorage.setItem("currentUser", JSON.stringify(response));
+            window.location.href="http://localhost:4200/cart";
+          },
+          error => {
+            console.warn("This error occurred: " + error);
+          }
+        );
+      }
+    } 
   }
 
   public addToBookmarks() {
+    this.inBookmarks=false;
+    this.inCart=false;
+    this.inOrders
+    
     if (this.user != null) {
+      this.loggedIn=true;
       let user:User = this.user;
-      user.bookmarks.push(this.book[0]);
-      console.log(user.bookmarks);
-      let stringUser = JSON.stringify(user);
-      this.bookService.addBook(stringUser).subscribe(
-        response => {
-          console.log(response);
-          window.sessionStorage.setItem("currentUser", JSON.stringify(response));
-        },
-        error => {
-          console.warn("This error occurred: " + error);
+
+      for (let b of user.bookmarks) {
+        if (b.isbn == this.book[0].isbn) {
+          this.inBookmarks=true;
         }
-      )
-    }
+      }
+
+      for (let b of user.cart) {
+        if (b.isbn == this.book[0].isbn) {
+          this.inCart=true;
+        }
+      }
+
+      for (let b of user.orders) {
+        if (b.isbn == this.book[0].isbn) {
+          this.inOrders=true;
+        }
+      }
+
+      if (!this.inBookmarks && !this.inCart && !this.inOrders) {
+        user.bookmarks.push(this.book[0]);
+        let stringUser = JSON.stringify(user);
+        this.bookService.addBook(stringUser).subscribe(
+          response => {
+            console.log(response);
+            window.sessionStorage.setItem("currentUser", JSON.stringify(response));
+            window.location.href="http://localhost:4200/bookmarks";
+          },
+          error => {
+            console.warn("This error occurred: " + error);
+          }
+        );
+      }
+    } 
   }
 }
