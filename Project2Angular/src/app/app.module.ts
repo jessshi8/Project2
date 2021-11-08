@@ -15,6 +15,8 @@ import { OrdersComponent } from './orders/orders.component';
 import { SearchComponent } from './search/search.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { AboutComponent } from './about/about.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 
 
 const routes: Routes = [
@@ -30,6 +32,8 @@ const routes: Routes = [
   {path: 'orders', component: OrdersComponent},
   {path: 'search/:keyword', component: CatalogComponent},
   {path: 'book/:bookIsbn', component: BookDetailsComponent},
+  {path: 'checkout', component: CheckoutComponent},
+  {path: 'order-complete', component: ThankyouComponent}
 ];
 
 @NgModule({
@@ -45,7 +49,9 @@ const routes: Routes = [
     ProfileComponent,
     SearchComponent,
     BookDetailsComponent,
-    AboutComponent
+    AboutComponent,
+    CheckoutComponent,
+    ThankyouComponent
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule, RouterModule.forRoot(routes)
