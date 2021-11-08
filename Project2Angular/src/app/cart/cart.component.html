@@ -26,6 +26,10 @@
                 </tr>
             </tbody>
         </table>
+        <div id = "body">
+            <button id="checkout" (click)="toCheckout()"><i class="bi bi-cart4"></i> To Checkout</button>
+            <p id = "body">{{cartStatus}}</p>
+        </div>
     </ng-template>
     <ng-template #elseBlock>
         <p id="body">Register or login to an existing account.</p>

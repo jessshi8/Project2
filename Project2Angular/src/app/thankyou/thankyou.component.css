@@ -2,12 +2,8 @@
     text-align: center;
 }
 
-#checkout {
-	width: 250px;
-}
-
 .container {
-    width: 100%;
+    width: 1000px;
     height: 100%;
 	margin: 0 auto 50px;
 	padding: 40px;
@@ -15,24 +11,9 @@
 	border-radius: 30px;
 }
 
-table {
-	text-align: center;
-	table-layout: fixed;
-	border: 1px solid #524c49;
-}
-
-th {
-	color:white;
-	background-color: #524c49;
-}
-
-td {
-	border-top: 1px solid #524c49;
-	border-bottom: 1px solid #524c49;
-}
-
 button {
-	width:100%;
+    margin: auto;
+	width: 30%;
     padding: 5px 10px;
     background-color: white;
     color: black;
