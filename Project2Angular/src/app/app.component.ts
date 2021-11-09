@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from './user';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public user:any=null;
+  public user:any= new User("","","","","","",[],[],[]);
   public sessionUser:string|null = "";
   public loggedin: string="true";
 
@@ -18,11 +19,17 @@ export class AppComponent {
   }
 
   public readcustomerboolean():boolean  {
+    //console.log(this.readcustomerusername());
+    this.sessionUser = window.sessionStorage.getItem("currentUser");
+    if (this.sessionUser != null) {
+      this.user = JSON.parse(this.sessionUser);
+    }
     if(window.sessionStorage.getItem("currentUser")==null){
       return true;
     }
     return false;
   }
+
 }
 
 

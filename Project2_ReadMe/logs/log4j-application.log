@@ -1,0 +1,25 @@
+2021-11-08 14:40:46 INFO  Main:202 - Login from user with username monkey
+2021-11-08 14:40:52 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 14:40:58 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 14:42:20 INFO  Main:74 - Retrieved books with isbn 9780340606513 from database
+2021-11-08 14:42:22 INFO  Main:74 - Retrieved books with isbn 9780340606513 from database
+2021-11-08 14:42:42 INFO  Main:202 - Login from user with username monkey
+2021-11-08 14:42:55 INFO  Main:74 - Retrieved books with isbn 9780340606513 from database
+2021-11-08 14:42:56 INFO  Main:74 - Retrieved books with isbn 9780340606513 from database
+2021-11-08 14:42:58 INFO  Main:287 - Added book to cart/bookmarks/orders of user with username monkey
+2021-11-08 14:43:14 INFO  Main:287 - Added book to cart/bookmarks/orders of user with username monkey
+2021-11-08 14:43:21 INFO  Main:287 - Added book to cart/bookmarks/orders of user with username monkey
+2021-11-08 14:48:47 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 14:50:01 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 14:51:51 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 14:52:11 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 14:54:27 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 14:54:35 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 14:54:37 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 14:54:58 INFO  Main:202 - Login from user with username monkey
+2021-11-08 15:05:19 INFO  Main:202 - Login from user with username monkey
+2021-11-08 15:25:24 INFO  Main:202 - Login from user with username monkey
+2021-11-08 15:25:52 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 15:25:59 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 15:28:55 INFO  Main:202 - Login from user with username monkey
+2021-11-08 15:30:44 INFO  Main:202 - Login from user with username monkey
