@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         this.loggedIn=true;
         console.log(response);
         sessionStorage.setItem("currentUser", JSON.stringify(response));
-        window.location.href="http://localhost:4200/";
+        window.location.href=window.location.origin + "/index.html";
       },
       error => {
         this.loggedIn=false;

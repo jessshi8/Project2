@@ -27,7 +27,6 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'bookmarks', component: BookmarksComponent},
   {path: 'cart', component: CartComponent},
-  {path: 'search/:keyword', component: CatalogComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'orders', component: OrdersComponent},
   {path: 'search/:keyword', component: CatalogComponent},

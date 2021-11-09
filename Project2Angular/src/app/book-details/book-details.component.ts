@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import {Book} from '../book';
 import { CatalogService } from '../catalog/catalog.service';
@@ -20,7 +20,8 @@ export class BookDetailsComponent implements OnInit {
   inOrders!:boolean;
   loggedIn!:boolean;
 
-  constructor(private route: ActivatedRoute, private catalogServ: CatalogService, private bookService: BookDetailsService) { }
+  constructor(private route: ActivatedRoute, private catalogServ: CatalogService, 
+    private bookService: BookDetailsService, private path: Router) { }
 
   ngOnInit(): void {
     this.inCart=false;
@@ -80,7 +81,7 @@ export class BookDetailsComponent implements OnInit {
         this.bookService.addBook(stringUser).subscribe(
           response => {
             window.sessionStorage.setItem("currentUser", JSON.stringify(response));
-            window.location.href="http://localhost:4200/cart";
+            this.path.navigate(['/cart']);
           },
           error => {
             console.warn("This error occurred: " + error);
@@ -124,7 +125,7 @@ export class BookDetailsComponent implements OnInit {
           response => {
             console.log(response);
             window.sessionStorage.setItem("currentUser", JSON.stringify(response));
-            window.location.href="http://localhost:4200/bookmarks";
+            this.path.navigate(['/bookmarks']);
           },
           error => {
             console.warn("This error occurred: " + error);

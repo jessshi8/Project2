@@ -5,3 +5,7 @@ header, .nav-item {
 nav {
     background-color: #383331;
 }
+
+a:hover {
+    cursor: pointer;
+}

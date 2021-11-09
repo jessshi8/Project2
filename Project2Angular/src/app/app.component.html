@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
-    <a title="About" class="navbar-brand" routerLink="/about" href="http://localhost:4200/">
+    <a title="About" class="navbar-brand" routerLink="/about">
       <img src="./assets/simple_logo.png" width="115" height="84.42">
       ReadMe.com
     </a>
@@ -41,7 +41,7 @@
         </li>
       </ul>
       <div class="navbar-nav navbar-left">
-        <li class="nav-item">
+        <li class="nav-item" id="register"*ngIf="readcustomerboolean()">
           <a title="Register" class="nav-link" aria-current="page" routerLink="/register">
             <i class="bi bi-pencil-square"></i>
             Register
@@ -54,7 +54,7 @@
           </a>
         </li>
         <li class="nav-item" id="logout"*ngIf="!readcustomerboolean()">
-          <a title="Logout" class="nav-link" routerLink="" href="http://localhost:4200/" (click)="logout()">
+          <a title="Logout" class="nav-link" (click)="logout()">
             <i class="bi bi-box-arrow-right"></i>
             Logout
           </a>
@@ -63,13 +63,10 @@
     </div>
   </div>
 </nav>
-<div *ngIf="readcustomerboolean()">Hello there </div>
-<div *ngIf="!readcustomerboolean()">Hello there fasdfaslkdjfa;slfj </div>
-
 
 <header>
   <div class="container">
-    <a routerLink="" href="http://localhost:4200/"><img src="./assets/simple_logo.png"></a>
+    <a routerLink=""><img src="./assets/simple_logo.png"></a>
   </div>
 </header>
 <router-outlet></router-outlet>

@@ -11,10 +11,10 @@ export class AppComponent {
   public loggedin: string="true";
 
   public logout() {
-    this.loggedin="false";
     //console.log("user logged out");
     window.onunload=function(){null};
     sessionStorage.clear();
+    window.location.href=window.location.origin + "/index.html";
   }
 
   public readcustomerboolean():boolean  {
