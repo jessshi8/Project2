@@ -16,4 +16,5 @@
   * Login, Register, Book Catalog, Shopping Cart, Checkout, User Profile
   * Logout
 test 
+more tests 
 
