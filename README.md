@@ -16,8 +16,12 @@
   * Login, Register, Book Catalog, Shopping Cart, Checkout, User Profile
   * Logout
   
--Images:
+- Images:
 
 ![Readme Home](https://github.com/jessshi8/Project2/blob/main/img/Capture.PNG?raw=true)
+
+
 ![Readme Profile](https://github.com/jessshi8/Project2/blob/main/img/Capture2.PNG?raw=true)
+
+
 ![Readme Past Orders](https://github.com/jessshi8/Project2/blob/main/img/Capture3.PNG?raw=true)
