@@ -34,7 +34,7 @@ export class RegistrationComponent implements OnInit {
       let stringUser = JSON.stringify(user.value);
       this.registrationService.insertUser(stringUser).subscribe(
         response => {
-          window.location.href="http://localhost:4200/";
+          window.location.href=window.location.origin + "/index.html";
         },
         error => {
           console.warn("This error occurred: " + error);
