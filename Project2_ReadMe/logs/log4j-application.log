@@ -23,3 +23,29 @@
 2021-11-08 15:25:59 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
 2021-11-08 15:28:55 INFO  Main:202 - Login from user with username monkey
 2021-11-08 15:30:44 INFO  Main:202 - Login from user with username monkey
+2021-11-08 15:48:02 INFO  Main:202 - Login from user with username monkey
+2021-11-08 15:57:06 INFO  Main:202 - Login from user with username monkey
+2021-11-08 16:24:48 INFO  Main:202 - Login from user with username monkey
+2021-11-08 16:24:53 INFO  Main:202 - Login from user with username monkey
+2021-11-08 16:26:06 INFO  Main:163 - Retrieved all users from database
+2021-11-08 16:26:27 INFO  Main:27 - Mail sent successfully
+2021-11-08 16:26:27 INFO  Main:227 - Inserted user with username monkey2 into database
+2021-11-08 16:39:18 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 16:39:20 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 16:39:59 INFO  Main:27 - Mail sent successfully
+2021-11-08 16:39:59 INFO  Main:227 - Inserted user with username timvigil into database
+2021-11-08 16:40:17 INFO  Main:202 - Login from user with username timvigil
+2021-11-08 16:40:57 INFO  Main:27 - Mail sent successfully
+2021-11-08 16:40:57 INFO  Main:252 - Inserted user with username timvigil into database
+2021-11-08 16:40:58 INFO  Main:255 - Password changed for username: timvigil
+2021-11-08 16:41:07 INFO  Main:202 - Login from user with username timvigil
+2021-11-08 16:41:20 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 16:41:21 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database
+2021-11-08 16:41:23 INFO  Main:287 - Added book to cart/bookmarks/orders of user with username timvigil
+2021-11-08 16:41:27 INFO  Main:287 - Added book to cart/bookmarks/orders of user with username timvigil
+2021-11-08 16:51:40 WARN  Main:83 - Book with title alice not found
+2021-11-08 16:51:46 WARN  Main:96 - Book with author Alice not found
+2021-11-08 16:51:53 WARN  Main:96 - Book with author Alice's not found
+2021-11-08 16:52:03 WARN  Main:83 - Book with title adventure not found
+2021-11-08 16:52:12 WARN  Main:83 - Book with title Adventure not found
+2021-11-08 16:52:21 INFO  Main:74 - Retrieved books with isbn 9781503222687 from database

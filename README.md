@@ -15,6 +15,8 @@
 - Pages:
   * Login, Register, Book Catalog, Shopping Cart, Checkout, User Profile
   * Logout
-  * lhwkiba
+  
+-Images:
+![Tux, the Linux mascot](/assets/images/tux.png)
 
 
